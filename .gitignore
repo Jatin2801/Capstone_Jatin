@@ -1,0 +1,76 @@
+# ============================
+#  Maven
+# ============================
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# ============================
+#  Eclipse / STS
+# ============================
+.classpath
+.project
+.settings/
+.springBeans
+.metadata/
+RemoteSystemsTempFiles/
+
+# ============================
+#  IntelliJ (if used)
+# ============================
+.idea/
+*.iml
+*.iws
+
+# ============================
+#  OS Files
+# ============================
+.DS_Store
+Thumbs.db
+
+# ============================
+#  Logs
+# ============================
+*.log
+logs/
+
+# ============================
+#  Temporary Files
+# ============================
+*.tmp
+*.temp
+*.swp
+
+# ============================
+#  Build Artifacts
+# ============================
+*.jar
+*.war
+*.ear
+
+# ============================
+#  H2 Database (if local file mode)
+# ============================
+*.mv.db
+*.trace.db
+
+# ============================
+#  Environment / Secrets
+# ============================
+application-local.yml
+application-dev.yml
+application-prod.yml
+.env
+
+# ============================
+#  Node (if frontend included)
+# ============================
+node_modules/
+dist/
+build/
+
+# ============================
+#  Config Repo (if external)
+# ============================
+config-repo/*.yml
+config-repo/*.properties
