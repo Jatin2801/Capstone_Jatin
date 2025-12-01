@@ -24,5 +24,10 @@ public class AdminService {
     public Admin addAdmin(Admin admin) {
         return repo.save(admin);
     }
+    
+    public void deleteAdmin(Integer adminId) {
+        repo.deleteById(adminId);
+    }
+
 
 }

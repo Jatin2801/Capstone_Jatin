@@ -20,6 +20,13 @@ public class AdminController {
         return service.addAdmin(admin);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteAdmin(@PathVariable Integer id) {
+        service.deleteAdmin(id);
+        return ResponseEntity.ok("Admin deleted");
+    }
+
+
     
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Admin req){

@@ -14,6 +14,11 @@ public class UserService {
     }
 
     public User addUser(User u){ return repo.save(u); }
+    
+    public void deleteUser(Integer id) {
+        repo.deleteById(id);
+    }
+
 
     public User login(String username, String password){
         User u = repo.findByUsername(username);

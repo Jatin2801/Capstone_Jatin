@@ -24,7 +24,6 @@ public class AuthController {
         this.restTemplate = restTemplate;
     }
 
-    // ADMIN LOGIN 
     @PostMapping("/admin/login")
     public String adminLogin(@RequestParam String username, @RequestParam String password, Model model) {
 
@@ -33,8 +32,8 @@ public class AuthController {
         body.put("password", password);
 
         try {
-            var response = restTemplate.postForObject(adminUrl + "/admin/login", body, Object.class);
-            model.addAttribute("admin", response);
+            Map response = restTemplate.postForObject(adminUrl + "/admin/login", body, Map.class);
+            model.addAttribute("adminId", response.get("adminId"));
             return "admin-dashboard";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid Admin Login");
@@ -42,7 +41,7 @@ public class AuthController {
         }
     }
 
-    // USER LOGIN 
+
     @PostMapping("/user/login")
     public String userLogin(@RequestParam String username, @RequestParam String password, Model model) {
 
@@ -51,8 +50,8 @@ public class AuthController {
         body.put("password", password);
 
         try {
-            var response = restTemplate.postForObject(userUrl + "/users/login", body, Object.class);
-            model.addAttribute("user", response);
+            Map response = restTemplate.postForObject(userUrl + "/users/login", body, Map.class);
+            model.addAttribute("userId", response.get("userId"));
             return "user-dashboard";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid User Login");
@@ -60,8 +59,9 @@ public class AuthController {
         }
     }
 
-    //  ADD ADMIN 
-    @PostMapping("/admin/add")
+
+
+        @PostMapping("/admin/add")
     public String addAdmin(@RequestParam Map<String, String> params, Model model) {
 
         try {
@@ -74,8 +74,21 @@ public class AuthController {
         }
     }
 
-    // ADD USER 
-    @PostMapping("/user/add")
+        @PostMapping("/admin/deleteAccount")
+        public String deleteAdmin(@RequestParam Integer adminId, Model model) {
+
+            try {
+                restTemplate.delete(adminUrl + "/admin/delete/" + adminId);
+                model.addAttribute("msg", "Admin account deleted");
+                return "login";
+            } catch (Exception e) {
+                model.addAttribute("error", "Could not delete admin");
+                return "admin-dashboard";
+            }
+        }
+
+
+        @PostMapping("/user/add")
     public String addUser(@RequestParam Map<String, String> params, Model model) {
 
         try {
@@ -87,4 +100,19 @@ public class AuthController {
             return "register";
         }
     }
+        
+        @PostMapping("/user/deleteAccount")
+        public String deleteUser(@RequestParam Integer userId, Model model) {
+
+            try {
+                restTemplate.delete(userUrl + "/users/delete/" + userId);
+                model.addAttribute("msg", "User account deleted");
+                return "login";
+            } catch (Exception e) {
+                model.addAttribute("error", "Could not delete user");
+                return "user-dashboard";
+            }
+        }
+
+
 }

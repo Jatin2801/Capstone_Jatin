@@ -19,6 +19,14 @@ public class UserController {
     public User add(@RequestBody User u){
         return service.addUser(u);
     }
+    
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
+        service.deleteUser(id);
+        return ResponseEntity.ok("User deleted");
+    }
+
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User req){

@@ -5,4 +5,7 @@ import com.micro.admin.entity.Admin;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
     Admin findByUsername(String username);
+    
+    void deleteByUsername(String username);
+
 }
