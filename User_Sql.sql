@@ -9,11 +9,9 @@ CREATE TABLE users (
     password VARCHAR(100),
     email VARCHAR(100),
     mobile VARCHAR(20),
-    address1 VARCHAR(100),
-    address2 VARCHAR(100),
     city VARCHAR(50),
     state VARCHAR(50),
-    zipcode VARCHAR(10),
-    country VARCHAR(50),
-    status VARCHAR(20)
+    country VARCHAR(50)
 );
+truncate table users;
+select * from users;

@@ -10,7 +10,7 @@ CREATE TABLE admin (
     mobile_no VARCHAR(20),
     admin_status ENUM('YES','NO')
 );
-
+select * from admin;
 CREATE TABLE songs_library (
     library_id INT PRIMARY KEY AUTO_INCREMENT,
     song_id INT,
@@ -22,3 +22,4 @@ CREATE TABLE songs_library (
     song_type ENUM('FREE','PREMIUM'),
     song_status ENUM('AVAILABLE','NOTAVAILABLE')
 );
+select * from songs_library ;

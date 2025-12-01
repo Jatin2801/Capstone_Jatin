@@ -22,11 +22,9 @@ public class User {
     private String email;
     private String mobile;
 
-    private String address1;
-    private String address2;
+ 
     private String city;
     private String state;
-    private String zipcode;
     private String country;
-    private String status;
+  
 }
