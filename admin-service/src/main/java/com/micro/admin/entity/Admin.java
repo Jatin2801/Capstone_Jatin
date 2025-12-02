@@ -20,8 +20,4 @@ public class Admin {
     private String email;
     private String mobileNo;
 
-    @Enumerated(EnumType.STRING)
-    private AdminStatus adminStatus;
-
-    public enum AdminStatus { YES, NO }
 }

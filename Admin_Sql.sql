@@ -7,10 +7,10 @@ CREATE TABLE admin (
     username VARCHAR(50) UNIQUE,
     password VARCHAR(100),
     email VARCHAR(100),
-    mobile_no VARCHAR(20),
-    admin_status ENUM('YES','NO')
+    mobile_no VARCHAR(20)
 );
 select * from admin;
+drop table admin;
 CREATE TABLE songs_library (
     library_id INT PRIMARY KEY AUTO_INCREMENT,
     song_id INT,

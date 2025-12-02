@@ -28,6 +28,4 @@ public class AdminService {
     public void deleteAdmin(Integer adminId) {
         repo.deleteById(adminId);
     }
-
-
 }

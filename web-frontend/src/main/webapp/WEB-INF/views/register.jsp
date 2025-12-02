@@ -11,10 +11,8 @@
     Password: <input type="password" name="password"><br/>
     Email: <input type="text" name="email"><br/>
     Mobile: <input type="text" name="mobileNo"><br/>
-    Status: <input type="text" name="adminStatus"><br/>
     <button type="submit">Add Admin</button>
 </form>
-
 <hr/>
 
 <h2>Add User</h2>
@@ -31,6 +29,7 @@
 	
     <button type="submit">Add User</button>
 </form>
-
+<hr>
+<a href="/">Login</a>
 </body>
 </html>
