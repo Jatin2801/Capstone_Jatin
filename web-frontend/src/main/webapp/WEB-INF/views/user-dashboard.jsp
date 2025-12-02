@@ -13,6 +13,9 @@
     <input type="hidden" name="userId" value="${userId}">
     <button type="submit">Delete My Account</button>
 </form>
+<hr>
+
+<a href="/user/update-page?id=${user.userId}">Update My Profile</a><br/><br/>
 
 
 </body>

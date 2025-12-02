@@ -14,6 +14,10 @@
     <input type="hidden" name="adminId" value="${adminId}">
     <button type="submit">Delete My Account</button>
 </form>
+<br>
+
+<a href="/admin/update-page?id=${admin.adminId}">Update My Profile</a><br/><br/>
+
 
 </body>
 </html>

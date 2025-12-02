@@ -20,12 +20,28 @@ public class UserController {
         return service.addUser(u);
     }
     
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUserById(@PathVariable Integer id) {
+        User user = service.getUserById(id);
+        return user == null ?
+                ResponseEntity.status(404).body("User not found") :
+                ResponseEntity.ok(user);
+    }
+
+    
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
         service.deleteUser(id);
         return ResponseEntity.ok("User deleted");
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Integer id, @RequestBody User req) {
+        User updated = service.updateUser(id, req);
+        if(updated == null)
+            return ResponseEntity.status(404).body("User not found");
+        return ResponseEntity.ok(updated);
+    }
 
 
     @PostMapping("/login")

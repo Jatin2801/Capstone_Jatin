@@ -25,6 +25,23 @@ public class AdminService {
         return repo.save(admin);
     }
     
+    public Admin getAdminById(Integer id) {
+        return repo.findById(id).orElse(null);
+    }
+
+    
+    public Admin updateAdmin(Integer id, Admin newData) {
+        return repo.findById(id).map(existing -> {
+            existing.setAdminName(newData.getAdminName());
+            existing.setUsername(newData.getUsername());
+            existing.setPassword(newData.getPassword());
+            existing.setEmail(newData.getEmail());
+            existing.setMobileNo(newData.getMobileNo());
+            return repo.save(existing);
+        }).orElse(null);
+    }
+
+    
     public void deleteAdmin(Integer adminId) {
         repo.deleteById(adminId);
     }

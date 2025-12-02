@@ -26,6 +26,22 @@ public class AdminController {
         return ResponseEntity.ok("Admin deleted");
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAdminById(@PathVariable Integer id) {
+        Admin admin = service.getAdminById(id);
+        return admin == null
+                ? ResponseEntity.status(404).body("Admin not found")
+                : ResponseEntity.ok(admin);
+    }
+
+    
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> updateAdmin(@PathVariable Integer id, @RequestBody Admin req) {
+        Admin updated = service.updateAdmin(id, req);
+        if(updated == null)
+            return ResponseEntity.status(404).body("Admin not found");
+        return ResponseEntity.ok(updated);
+    }
 
     
     @PostMapping("/login")
