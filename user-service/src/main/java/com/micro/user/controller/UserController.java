@@ -27,7 +27,6 @@ public class UserController {
                 ResponseEntity.status(404).body("User not found") :
                 ResponseEntity.ok(user);
     }
-
     
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Integer id) {
@@ -42,7 +41,6 @@ public class UserController {
             return ResponseEntity.status(404).body("User not found");
         return ResponseEntity.ok(updated);
     }
-
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User req){

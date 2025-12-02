@@ -7,8 +7,7 @@
 
 <form action="/user/update" method="post">
 
-    <input type="hidden" name="userId" value="${user.userId}" />
-
+ <input type="hidden" name="userId" value="${user.userId}" />
     First Name: <input type="text" name="firstName" value="${user.firstName}"><br/>
     Last Name: <input type="text" name="lastName" value="${user.lastName}"><br/>
     Username: <input type="text" name="username" value="${user.username}"><br/>

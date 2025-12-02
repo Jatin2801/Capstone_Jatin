@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpSession;
 
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,8 +38,8 @@ public class AuthController {
         body.put("password", password);
 
         try {
-            var admin = restTemplate.postForObject(adminUrl + "/admin/login", body, Map.class);
-            session.setAttribute("admin", admin);
+        	 var admin = restTemplate.postForObject(adminUrl + "/admin/login", body, Map.class);
+             session.setAttribute("admin", admin);
             return "admin-dashboard";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid Admin Login");
@@ -57,8 +59,8 @@ public class AuthController {
         body.put("password", password);
 
         try {
-            var user = restTemplate.postForObject(userUrl + "/users/login", body, Map.class);
-            session.setAttribute("user", user);
+        	  var user = restTemplate.postForObject(userUrl + "/users/login", body, Map.class);
+              session.setAttribute("user", user);
             return "user-dashboard";
         } catch (Exception e) {
             model.addAttribute("error", "Invalid User Login");
@@ -92,7 +94,7 @@ public class AuthController {
         public String updateAdmin(@RequestParam Map<String, String> params) {
             Integer id = Integer.parseInt(params.get("adminId"));
             restTemplate.put(adminUrl + "/admin/update/" + id, params);
-            return "redirect:/";
+            return "admin-dashboard";
         }
 
 
@@ -109,6 +111,7 @@ public class AuthController {
                 return "admin-dashboard";
             }
         }
+
 
 
         @PostMapping("/user/add")
@@ -136,7 +139,7 @@ public class AuthController {
         public String updateUser(@RequestParam Map<String, String> params) {
             Integer id = Integer.parseInt(params.get("userId"));
             restTemplate.put(userUrl + "/users/update/" + id, params);
-            return "redirect:/";
+            return "user-dashboard";
         }
 
         
@@ -152,6 +155,5 @@ public class AuthController {
                 return "user-dashboard";
             }
         }
-
 
 }

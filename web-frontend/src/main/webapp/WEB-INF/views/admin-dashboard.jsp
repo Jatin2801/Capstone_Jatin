@@ -1,23 +1,27 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
-<title>Admin Dashboard</title>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
 
-<h2>Welcome Admin</h2>
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
 
-<a href="/add-song">Add Song</a><br/>
-<a href="/show-available">Show Available Songs</a><br/>
-<a href="/show-free">Show Free Songs</a><br/>
-
-<form action="/admin/deleteAccount" method="post">
+    <a href="/add-song"><button>Add Song</button></a>
+    <a href="/show-available"><button>Show Available Songs</button></a>
+    <a href="/show-free"><button>Show Free Songs</button></a>
+    <form action="/admin/deleteAccount" method="post">
     <input type="hidden" name="adminId" value="${adminId}">
     <button type="submit">Delete My Account</button>
-</form>
-<br>
+	</form>
+	
+   <a href="/admin/update-page?id=${admin.adminId}">Update My Profile</a><br/><br/>
 
-<a href="/admin/update-page?id=${admin.adminId}">Update My Profile</a><br/><br/>
 
+    <a href="/"><button style="background:#333;">Logout</button></a>
+</div>
 
 </body>
 </html>

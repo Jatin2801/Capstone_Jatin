@@ -1,4 +1,4 @@
-<html>
+
 <body>
 <h2>Update Admin Profile</h2>
 
