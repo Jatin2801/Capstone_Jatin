@@ -14,7 +14,8 @@
 
         <h2 class="song-form-title">${mode}</h2>
 
-        <form method="post" action="/songs/save" class="song-form">
+        <form method="post" action="/songs/save" class="song-form" enctype="multipart/form-data">
+
 
             <!-- Hidden PK -->
             <input type="hidden" name="libraryId" value="${song.libraryId}" />
@@ -64,6 +65,12 @@
                     <option value="NOTAVAILABLE" ${song.songStatus == 'NOTAVAILABLE' ? 'selected' : ''}>NOT AVAILABLE</option>
                 </select>
             </div>
+            
+            <div class="sf-field">
+   				 <label>Upload MP3</label>
+   				 <input class="sf-input" type="file" name="file" accept="audio/*" />
+			</div>
+            
 
             <div class="sf-actions">
                 <button type="submit">Save Song</button>

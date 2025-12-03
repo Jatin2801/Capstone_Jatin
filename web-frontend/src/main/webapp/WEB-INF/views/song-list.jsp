@@ -52,6 +52,14 @@
                         <a class="sl-action-link" href="/songs/edit/${song.libraryId}">Edit</a> |
                         <a class="sl-action-link" href="/songs/delete/${song.libraryId}">Delete</a>
                     </td>
+                    <td>
+    <c:if test="${not empty song.fileName}">
+        <audio controls style="width:200px;">
+            <source src="${pageContext.request.contextPath}/songs/play/${song.libraryId}">
+        </audio>
+    </c:if>	
+				</td>
+                    
                 </tr>
             </c:forEach>
             </tbody>

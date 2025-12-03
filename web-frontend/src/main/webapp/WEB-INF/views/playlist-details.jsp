@@ -7,11 +7,18 @@
 
 <h3>Songs in Playlist</h3>
 <table border="1">
-<tr><th>ID</th><th>Title</th><th>Action</th></tr>
+<tr><th>ID</th><th>Title</th><th>Play</th><th>Action</th></tr>
 <c:forEach var="s" items="${songsInPlaylist}">
 <tr>
     <td>${s.libraryId}</td>
     <td>${s.songTitle}</td>
+    <td>
+    <c:if test="${not empty s.fileName}">
+        <audio controls style="width:200px;">
+            <source src="${pageContext.request.contextPath}/songs/play/${s.libraryId}">
+        </audio>
+    </c:if>	
+				</td>
     <td><a href="/playlists/remove/${playlist.playlistId}/${s.libraryId}?userId=${userId}">Remove</a></td>
 </tr>
 </c:forEach>

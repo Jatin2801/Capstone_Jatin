@@ -11,8 +11,9 @@ public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer libraryId;
+
     private String songTitle;
-    private String genre;    
+    private String genre;
     private String musicDirector;
     private String singer;
     private String releaseDate;
@@ -23,6 +24,12 @@ public class Song {
 
     @Enumerated(EnumType.STRING)
     private SongStatus songStatus;
+
+   
+    private String fileName; 
+    private String fileType;   
+    private Long fileSize;     
+    private String filePath;   
 
     public enum SongType { FREE, PREMIUM }
     public enum SongStatus { AVAILABLE, NOTAVAILABLE }

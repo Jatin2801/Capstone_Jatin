@@ -68,3 +68,5 @@ build/
 # ============================
 config-repo/*.yml
 config-repo/*.properties
+
+/song-service/mp3-storage/

@@ -24,7 +24,7 @@ CREATE TABLE  playlists (
     user_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
+select * from playlists;
 CREATE TABLE playlist_songs (
     playlist_id INT NOT NULL,
     song_id INT NOT NULL,
@@ -34,4 +34,3 @@ CREATE TABLE playlist_songs (
         REFERENCES playlists(playlist_id)
         ON DELETE CASCADE
 );
-
