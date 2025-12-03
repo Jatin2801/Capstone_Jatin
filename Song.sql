@@ -6,17 +6,19 @@ CREATE DATABASE musicdb
 
 USE musicdb;
 drop table songs_library;
+select * from songs_library;
 CREATE TABLE songs_library (
-    library_Id INT AUTO_INCREMENT PRIMARY KEY,
-    song_Id VARCHAR(100),
-    songTitle VARCHAR(255) NOT NULL,
-    songDesc TEXT,
+    library_id INT AUTO_INCREMENT PRIMARY KEY,
+    song_id VARCHAR(100),
+    song_title VARCHAR(100),
+    song_desc VARCHAR(100),
     genre VARCHAR(100),
-    duration INT,
-    musicDirector VARCHAR(255),
-    singer VARCHAR(255),
-    releaseDate DATE,
-    albumName VARCHAR(255),
-    songType ENUM('FREE','PREMIUM') DEFAULT 'FREE',
-    songStatus ENUM('AVAILABLE','NOTAVAILABLE') DEFAULT 'AVAILABLE'
+    duration VARCHAR(50),
+    music_director VARCHAR(100),
+    singer VARCHAR(100),
+    release_date VARCHAR(100),
+    album_name VARCHAR(100),
+    song_type VARCHAR(100),
+    song_status VARCHAR(100)
 );
+

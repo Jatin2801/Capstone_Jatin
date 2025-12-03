@@ -12,7 +12,7 @@
     <a href="/show-all-songs"><button>Show All Songs</button></a>
     <a href="/show-free"><button>Show Free Songs</button></a>
    <form action="/user/deleteAccount" method="post">
-    <input type="hidden" name="userId" value="${userId}">
+    <input type="hidden" name="userId" value="${user.userId}">
     <button type="submit">Delete My Account</button>
 </form>
     
