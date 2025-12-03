@@ -15,3 +15,23 @@ CREATE TABLE users (
 );
 truncate table users;
 select * from users;
+
+USE user_db;
+
+CREATE TABLE  playlists (
+    playlist_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    user_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE playlist_songs (
+    playlist_id INT NOT NULL,
+    song_id INT NOT NULL,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (playlist_id, song_id),
+    CONSTRAINT fk_playlist_id FOREIGN KEY (playlist_id)
+        REFERENCES playlists(playlist_id)
+        ON DELETE CASCADE
+);
+

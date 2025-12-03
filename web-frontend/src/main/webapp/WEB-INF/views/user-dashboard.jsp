@@ -9,8 +9,12 @@
 <div class="dashboard-container">
     <h2>User Dashboard</h2>
 
-    <a href="/show-all-songs"><button>Show All Songs</button></a>
-    <a href="/show-free"><button>Show Free Songs</button></a>
+    
+    <a href="/playlists/user/${user.userId}">
+    <button style="background-color:#4CAF50;color:white;padding:10px 20px;border:none;border-radius:5px;">
+        Playlists
+    </button>
+</a>
    <form action="/user/deleteAccount" method="post">
     <input type="hidden" name="userId" value="${user.userId}">
     <button type="submit">Delete My Account</button>

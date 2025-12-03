@@ -11,15 +11,4 @@ CREATE TABLE admin (
 );
 select * from admin;
 truncate table admin;
-CREATE TABLE songs_library (
-    library_id INT PRIMARY KEY AUTO_INCREMENT,
-    song_id INT,
-    song_name VARCHAR(100),
-    music_director VARCHAR(100),
-    singer VARCHAR(100),
-    release_date DATE,
-    album_name VARCHAR(100),
-    song_type ENUM('FREE','PREMIUM'),
-    song_status ENUM('AVAILABLE','NOTAVAILABLE')
-);
 select * from songs_library ;
