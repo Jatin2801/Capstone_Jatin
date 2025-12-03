@@ -23,11 +23,9 @@ public class SongService {
 
     public Song update(Integer id, Song s) {
         return repo.findById(id).map(old -> {
-            old.setSongId(s.getSongId());
+            
             old.setSongTitle(s.getSongTitle());
-            old.setSongDesc(s.getSongDesc());
-            old.setGenre(s.getGenre());
-            old.setDuration(s.getDuration());
+            old.setGenre(s.getGenre());           
             old.setMusicDirector(s.getMusicDirector());
             old.setSinger(s.getSinger());
             old.setReleaseDate(s.getReleaseDate());

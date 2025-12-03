@@ -9,9 +9,10 @@
 <div class="dashboard-container">
     <h2>Admin Dashboard</h2>
 
-    <a href="/add-song"><button>Add Song</button></a>
-    <a href="/show-available"><button>Show Available Songs</button></a>
-    <a href="/show-free"><button>Show Free Songs</button></a>
+   <a href="/songs"><button>Show All Songs</button></a>
+
+<a href="/songs/add"><button>Add Song</button></a>
+   
     <form action="/admin/deleteAccount" method="post">
     <input type="hidden" name="adminId" value="${admin.adminId}">
     <button type="submit">Delete My Account</button>

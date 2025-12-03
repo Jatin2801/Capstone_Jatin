@@ -1,19 +1,15 @@
-
-
 CREATE DATABASE musicdb
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_general_ci;
 
 USE musicdb;
 drop table songs_library;
+
 select * from songs_library;
 CREATE TABLE songs_library (
     library_id INT AUTO_INCREMENT PRIMARY KEY,
-    song_id VARCHAR(100),
     song_title VARCHAR(100),
-    song_desc VARCHAR(100),
     genre VARCHAR(100),
-    duration VARCHAR(50),
     music_director VARCHAR(100),
     singer VARCHAR(100),
     release_date VARCHAR(100),

@@ -11,12 +11,8 @@ public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer libraryId;
-
-    private String songId;
     private String songTitle;
-    private String songDesc;
-    private String genre;
-    private Integer duration;
+    private String genre;    
     private String musicDirector;
     private String singer;
     private String releaseDate;
