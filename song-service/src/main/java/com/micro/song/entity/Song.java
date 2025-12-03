@@ -1,23 +1,25 @@
-package com.micro.admin.entity;
+package com.micro.song.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import java.time.LocalDate;
+import lombok.*;
 
 @Entity
 @Table(name = "songs_library")
-@Data
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
 public class Song {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer libraryId;
 
-    private Integer songId;
-    private String songName;
+    private String songId;
+    private String songTitle;
+    private String songDesc;
+    private String genre;
+    private Integer duration;
     private String musicDirector;
     private String singer;
-    private LocalDate releaseDate;
+    private String releaseDate;
     private String albumName;
 
     @Enumerated(EnumType.STRING)

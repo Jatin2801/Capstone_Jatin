@@ -1,10 +1,10 @@
-package com.web.frontend;
+package com.micro.song;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class WebFrontendApplicationTests {
+class SongServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
