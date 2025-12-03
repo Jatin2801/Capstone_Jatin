@@ -4,56 +4,77 @@
 <html>
 <head>
     <title>${mode}</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
 
-<h2>${mode}</h2>
+<div class="song-form-wrapper">
 
-<form method="post" action="/songs/save">
+    <div class="song-form-card">
 
-    <!-- Hidden PK -->
-    <input type="hidden" name="libraryId" value="${song.libraryId}" />
+        <h2 class="song-form-title">${mode}</h2>
 
-    <label>Song Title:</label>
-    <input type="text" name="songTitle" value="${song.songTitle}" required /><br/><br/>
+        <form method="post" action="/songs/save" class="song-form">
 
-    <label>Genre:</label>
-    <input type="text" name="genre" value="${song.genre}" required /><br/><br/>
+            <!-- Hidden PK -->
+            <input type="hidden" name="libraryId" value="${song.libraryId}" />
 
-    <label>Music Director:</label>
-    <input type="text" name="musicDirector" value="${song.musicDirector}" required /><br/><br/>
+            <div class="sf-row">
+                <label class="sf-label">Song Title:</label>
+                <input class="sf-input" type="text" name="songTitle" value="${song.songTitle}" required />
+            </div>
 
-    <label>Singer:</label>
-    <input type="text" name="singer" value="${song.singer}" required /><br/><br/>
+            <div class="sf-row">
+                <label class="sf-label">Genre:</label>
+                <input class="sf-input" type="text" name="genre" value="${song.genre}" required />
+            </div>
 
-    <label>Release Date:</label>
-    <input type="text" name="releaseDate" value="${song.releaseDate}" placeholder="YYYY-MM-DD" required /><br/><br/>
+            <div class="sf-row">
+                <label class="sf-label">Music Director:</label>
+                <input class="sf-input" type="text" name="musicDirector" value="${song.musicDirector}" required />
+            </div>
 
-    <label>Album Name:</label>
-    <input type="text" name="albumName" value="${song.albumName}" required /><br/><br/>
+            <div class="sf-row">
+                <label class="sf-label">Singer:</label>
+                <input class="sf-input" type="text" name="singer" value="${song.singer}" required />
+            </div>
 
-    <label>Song Type:</label>
-    <select name="songType" required>
-        <option value="FREE" ${song.songType == 'FREE' ? 'selected' : ''}>FREE</option>
-        <option value="PREMIUM" ${song.songType == 'PREMIUM' ? 'selected' : ''}>PREMIUM</option>
-    </select>
-    <br/><br/>
+            <div class="sf-row">
+                <label class="sf-label">Release Date:</label>
+                <input class="sf-input" type="text" name="releaseDate" value="${song.releaseDate}" placeholder="YYYY-MM-DD" required />
+            </div>
 
-    <label>Song Status:</label>
-    <select name="songStatus" required>
-        <option value="AVAILABLE" ${song.songStatus == 'AVAILABLE' ? 'selected' : ''}>AVAILABLE</option>
-        <option value="NOTAVAILABLE" ${song.songStatus == 'NOTAVAILABLE' ? 'selected' : ''}>NOT AVAILABLE</option>
-    </select>
-    <br/><br/>
+            <div class="sf-row">
+                <label class="sf-label">Album Name:</label>
+                <input class="sf-input" type="text" name="albumName" value="${song.albumName}" required />
+            </div>
 
-    <button type="submit">Save Song</button>
-</form>
+            <div class="sf-row">
+                <label class="sf-label">Song Type:</label>
+                <select class="sf-input" name="songType" required>
+                    <option value="FREE" ${song.songType == 'FREE' ? 'selected' : ''}>FREE</option>
+                    <option value="PREMIUM" ${song.songType == 'PREMIUM' ? 'selected' : ''}>PREMIUM</option>
+                </select>
+            </div>
 
-<br/>
+            <div class="sf-row">
+                <label class="sf-label">Song Status:</label>
+                <select class="sf-input" name="songStatus" required>
+                    <option value="AVAILABLE" ${song.songStatus == 'AVAILABLE' ? 'selected' : ''}>AVAILABLE</option>
+                    <option value="NOTAVAILABLE" ${song.songStatus == 'NOTAVAILABLE' ? 'selected' : ''}>NOT AVAILABLE</option>
+                </select>
+            </div>
 
-<a href="/songs">
-    <button>Back to Song List</button>
-</a>
+            <div class="sf-actions">
+                <button type="submit">Save Song</button>
+                <a href="/songs"><button type="button">Back</button></a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 </body>
 </html>
