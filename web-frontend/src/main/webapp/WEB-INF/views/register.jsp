@@ -1,50 +1,123 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html><head>
+<html>
+<head>
 <title>Register</title>
-<link rel="stylesheet" href="resources/css/style.css">
-</head><body>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+</head>
+<body>
+<div style="margin-left:15px ; margin-top:5px">
+        <a href="/"><button class="btn-outline">⬅ Back</button></a>
+    </div>
+<div class="auth-container fade" style="margin-top: -30px">
 
-<div class="auth-container fade">
     <h2>Create Account</h2>
 
+    <!-- Switch Tabs -->
     <div class="switch-box">
-        <div id="adminTab" class="switch-btn active">Admin</div>
-        <div id="userTab" class="switch-btn">User</div>
+        <button id="adminTab" class="switch-btn active">Admin</button>
+        <button id="userTab" class="switch-btn">User</button>
     </div>
 
-    <!-- ADMIN FORM -->
-    <form id="adminForm" class="register-form active" action="admin/add" method="post">
-        <input type="text" name="adminName" placeholder="Name" required/>
-        <input type="text" name="username" placeholder="Username" required/>
-        <input type="password" name="password" placeholder="Password" required/>
-        <input type="email" name="email" placeholder="Email" required/>
-        <input type="text" name="mobileNo" placeholder="Mobile" required/>
-        <button>Create Admin</button>
-    </form>
+    <!-- Wrapper to hold both forms side-by-side -->
+    <div class="form-slider">
 
-    <!-- USER FORM -->
-    <form id="userForm" class="register-form" action="user/add" method="post">
-        <input name="firstName" placeholder="First Name" required/>
-        <input name="lastName" placeholder="Last Name" required/>
-        <input name="username" placeholder="Username" required/>
-        <input type="password" name="password" placeholder="Password" required/>
-        <input name="email" placeholder="Email" required/>
-        <input name="mobileNo" placeholder="Mobile" required/>
-        <input name="city" placeholder="City"/>
-        <input name="state" placeholder="State"/>
-        <input name="country" placeholder="Country"/>
-        <button>Create User</button>
-    </form>
+        <!-- ADMIN FORM (Starts Visible @ 0px) -->
+        <form id="adminForm" class="register-slide" action="${pageContext.request.contextPath}/admin/add" method="post">
+
+            <div class="field"><label>Full Name</label>
+            <input name="adminName" placeholder="Enter Full Name" required/></div>
+
+            <div class="field"><label>Username</label>
+            <input name="username" placeholder="Enter Username" required/></div>
+
+            <div class="field"><label>Password</label>
+            <input type="password" name="password" placeholder="Enter Password" required/></div>
+
+            <div class="field"><label>Email</label>
+            <input type="email" name="email" placeholder="Enter Email Address" required/></div>
+
+            <div class="field"><label>Mobile No</label>
+            <input name="mobileNo" placeholder="Enter Mobile Number" required/></div>
+
+            <button>Create Admin</button>
+        </form>
+
+
+        <!-- USER FORM (Starts off-screen @ -1200px) -->
+        <form id="userForm" class="register-slide" action="${pageContext.request.contextPath}/user/add" method="post">
+
+            <div class="field"><label>First Name</label>
+            <input name="firstName" placeholder="Enter First Name" required/></div>
+
+            <div class="field"><label>Last Name</label>
+            <input name="lastName" placeholder="Enter Last Name" required/></div>
+
+            <div class="field"><label>Username</label>
+            <input name="username" placeholder="Choose Username" required/></div>
+
+            <div class="field"><label>Password</label>
+            <input type="password" name="password" placeholder="Enter Password" required/></div>
+
+            <div class="field"><label>Email</label>
+            <input name="email" placeholder="Enter Email" required/></div>
+
+            <div class="field"><label>Mobile No</label>
+            <input name="mobileNo" placeholder="Enter Mobile Number" required/></div>
+
+            <div class="field"><label>City</label>
+            <input name="city" placeholder="City"/></div>
+
+            <div class="field"><label>State</label>
+            <input name="state" placeholder="State"/></div>
+
+            <div class="field"><label>Country</label>
+            <input name="country" placeholder="Country"/></div>
+
+            <button>Create User</button>
+        </form>
+
+    </div>
+
 </div>
 
+
 <script>
-adminTab.onclick=()=>switchForm(true);userTab.onclick=()=>switchForm(false);
-function switchForm(admin){
- adminForm.classList.toggle("active",admin);
- userForm.classList.toggle("active",!admin);
- adminTab.classList.toggle("active",admin);
- userTab.classList.toggle("active",!admin);
+let admin = document.getElementById("adminForm");
+let user  = document.getElementById("userForm");
+function adjustHeight(){
+    let slider = document.querySelector(".form-slider");
+    let activeForm = adminTab.classList.contains("active") ? admin : user;
+    slider.style.height = activeForm.offsetHeight + "px";
 }
+
+let adminTab = document.getElementById("adminTab");
+let userTab  = document.getElementById("userTab");
+
+function slideAdmin(){
+    admin.style.marginLeft = "0px";
+    user.style.marginLeft  = "-1200px";
+
+    adminTab.classList.add("active");
+    userTab.classList.remove("active");
+
+    adjustHeight();
+}
+
+function slideUser(){
+    admin.style.marginLeft = "1200px";
+    user.style.marginLeft  = "0px";
+
+    adminTab.classList.remove("active");
+    userTab.classList.add("active");
+
+    adjustHeight();
+}
+
+
+adminTab.onclick = slideAdmin;
+userTab.onclick  = slideUser;
+window.onload = adjustHeight; 
 </script>
 
-</body></html>
+</body>
+</html>
