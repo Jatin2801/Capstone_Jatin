@@ -29,7 +29,7 @@
         <input name="username" placeholder="Username" required/>
         <input type="password" name="password" placeholder="Password" required/>
         <input name="email" placeholder="Email" required/>
-        <input name="mobile" placeholder="Mobile" required/>
+        <input name="mobileNo" placeholder="Mobile" required/>
         <input name="city" placeholder="City"/>
         <input name="state" placeholder="State"/>
         <input name="country" placeholder="Country"/>

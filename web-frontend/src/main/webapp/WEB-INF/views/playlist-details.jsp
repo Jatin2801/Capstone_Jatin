@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
-
+<div style="margin-left:15px ; margin-top:15px">
+        <a href="/user/dashboard"><button class="btn-outline">⬅ Back</button></a>
+    </div>
 <div class="playlist-container fade">
 
     <h1 class="play-title">${playlist.name}</h1>
     <p class="play-sub">Enjoy your music 🎧</p>
 
-    <!-- PLAYER ONLY IF SONGS EXIST -->
+   
     <c:if test="${not empty songsInPlaylist}">
         <div class="player-bar">
             <button id="prevBtn"     class="player-btn">⏮</button>
@@ -102,9 +104,7 @@
         </tbody>
     </table>
 
-    <div style="text-align:center;margin-top:25px;">
-        <a href="/user/dashboard"><button class="btn-outline">⬅ Back</button></a>
-    </div>
+    
 
 </div>
 

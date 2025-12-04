@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
 <body>
-
+<a href="/admin/dashboard"><button class="btn-outline">⬅ Back</button></a>
 <div class="update-container fade">
     <h2>Update Admin</h2>
 
@@ -35,7 +35,7 @@
 
         <div class="field">
             <label>Mobile No.</label>
-            <input name="mobile" value="${admin.mobile}" placeholder="Enter Mobile Number"/>
+            <input name="mobileNo" value="${admin.mobileNo}" placeholder="Enter Mobile Number"/>
         </div>
 
         <button class="update-save">Save</button>
