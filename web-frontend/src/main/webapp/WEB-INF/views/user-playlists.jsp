@@ -3,6 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
+<a href="${pageContext.request.contextPath}/user-dashboard">
+    <button style="padding:8px 16px;"> Dashboard</button>
+</a>
+<br>
 <h2>My Playlists</h2>
 
 <form method="post" action="/playlists/create">

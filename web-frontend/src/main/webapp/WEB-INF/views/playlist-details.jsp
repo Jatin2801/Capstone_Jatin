@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
+<a href="${pageContext.request.contextPath}/playlists/user/${userId}">
+    <button style="padding:8px 16px;">My Playlists</button>
+</a><br><br>
 <h2>Playlist: ${playlist.name}</h2>
 
 <h3>Songs in Playlist</h3>
@@ -58,6 +61,7 @@
 </tr>
 </c:forEach>
 </table>
+
 
 </body>
 </html>

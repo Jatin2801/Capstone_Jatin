@@ -47,6 +47,14 @@ public class AuthController {
         }
     }
 
+    @GetMapping("/user-dashboard")
+    public String userDashboard(HttpSession session, Model model) {
+        Object user = session.getAttribute("user");
+        if (user == null) return "login";        // security check
+        model.addAttribute("user", user);
+        return "user-dashboard";                 // view file name
+    }
+
 
 
     @PostMapping("/user/login")
