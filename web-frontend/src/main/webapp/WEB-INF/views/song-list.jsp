@@ -31,6 +31,7 @@
                     <th>Album</th>
                     <th>Type</th>
                     <th>Status</th>
+                    <th>Play</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -47,18 +48,18 @@
                     <td>${song.albumName}</td>
                     <td>${song.songType}</td>
                     <td>${song.songStatus}</td>
-
-                    <td>
-                        <a class="sl-action-link" href="/songs/edit/${song.libraryId}">Edit</a> |
-                        <a class="sl-action-link" href="/songs/delete/${song.libraryId}">Delete</a>
-                    </td>
-                    <td>
+			<td>
     <c:if test="${not empty song.fileName}">
         <audio controls style="width:200px;">
             <source src="${pageContext.request.contextPath}/songs/play/${song.libraryId}">
         </audio>
     </c:if>	
 				</td>
+                    <td>
+                        <a class="sl-action-link" href="/songs/edit/${song.libraryId}">Edit</a> |
+                        <a class="sl-action-link" href="/songs/delete/${song.libraryId}">Delete</a>
+                    </td>
+                    
                     
                 </tr>
             </c:forEach>
