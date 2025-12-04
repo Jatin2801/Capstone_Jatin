@@ -1,4 +1,7 @@
 @charset "UTF-8";
+
+/* ========== GLOBAL ========== */
+
 body {
     font-family: Arial, sans-serif;
     background: #f1f3f6;
@@ -6,68 +9,136 @@ body {
     padding: 0;
 }
 
+h2, h3 {
+    margin-top: 0;
+    color: #222;
+}
+
+a {
+    text-decoration: none;
+    color: #345bdb;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background: #345bdb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 14px;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+    background: #2746b0;
+    transform: translateY(-1px);
+}
+
+/* ========== AUTH / BASIC FORMS (container, login, register) ========== */
+
 .container {
     width: 420px;
     margin: 70px auto;
     padding: 30px;
     background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-h2, h3 {
+.container h2 {
     text-align: center;
-    color: #333;
+    margin-bottom: 20px;
 }
 
-form {
+.container form h3 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.container input[type="text"],
+.container input[type="password"],
+.container input[type="email"] {
+    width: 100%;
+    padding: 9px 11px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccd3e0;
+    box-sizing: border-box;
+}
+
+.container form button {
+    width: 100%;
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+/* Register toggle */
+
+.register-container {
+    position: relative;
+}
+
+.register-toggle {
     display: flex;
-    flex-direction: column;
-    margin-top: 15px;
+    gap: 8px;
+    margin-bottom: 18px;
+    justify-content: center;
 }
 
-input {
-    padding: 10px;
-    margin: 6px 0;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-button {
-    margin-top: 12px;
-    padding: 10px;
-    background: #0066ff;
-    color: white;
+.toggle-btn {
+    flex: 1;
+    background: #e4e9ff;
+    color: #333;
+    border-radius: 999px;
+    padding: 8px 10px;
     border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
+    font-weight: 600;
 }
 
-button:hover {
-    background: #0050cc;
+.toggle-btn.active {
+    background: #345bdb;
+    color: #fff;
 }
 
-a {
-    text-decoration: none;
-    color: #007bff;
-    text-align: center;
+.register-form {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.register-form.active {
     display: block;
-    margin-top: 15px;
+    opacity: 1;
+    transform: translateY(0);
 }
+
+/* ========== DASHBOARD ========== */
 
 .dashboard-container {
-    width: 420px;
-    margin: 50px auto;
-    padding: 25px;
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
     background: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.dashboard-container h2 {
+    margin-bottom: 20px;
 }
 
 .dashboard-container a button {
-    width: 100%;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
+
+/* ========== SONG FORM ========== */
 
 .song-form-wrapper {
     max-width: 900px;
@@ -85,9 +156,8 @@ a {
 
 .song-form-title {
     margin-bottom: 25px;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 700;
-    color: #1a1a1a;
 }
 
 .sf-row {
@@ -106,15 +176,10 @@ a {
 
 .sf-input {
     flex: 1;
-    padding: 10px 12px;
-    border-radius: 8px;
-    border: 1px solid #ccd3e0;
-    background: #f9fbff;
-    font-size: 14px;
 }
 
-.sf-input select,
 .sf-input input,
+.sf-input select,
 .sf-input textarea {
     width: 100%;
     padding: 10px 12px;
@@ -122,6 +187,13 @@ a {
     border: 1px solid #ccd3e0;
     background: #f9fbff;
     font-size: 14px;
+    box-sizing: border-box;
+}
+
+.sf-file-info {
+    font-size: 12px;
+    margin-top: 6px;
+    color: #555;
 }
 
 .sf-actions {
@@ -146,21 +218,7 @@ a {
     color: #345bdb;
 }
 
-/* Mobile responsive */
-@media (max-width: 760px) {
-    .sf-row {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .sf-label {
-        width: auto;
-        margin-bottom: 6px;
-    }
-    .song-form-card {
-        padding: 22px;
-    }
-}
-
+/* ========== SONG LIST ========== */
 
 .song-list-wrapper {
     max-width: 1200px;
@@ -172,22 +230,64 @@ a {
     font-family: Arial, sans-serif;
 }
 
+.song-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
 .song-list-title {
     font-size: 26px;
     font-weight: 700;
-    margin-bottom: 18px;
+    margin: 0;
     color: #1f1f1f;
 }
 
 .song-list-top-actions {
-    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
 }
+
+.song-list-table-container {
+    overflow-x: auto;
+    margin-top: 10px;
+}
+
+.song-list-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.song-list-table thead th {
+    background: #f4f6fa;
+    padding: 12px 14px;
+    font-weight: bold;
+    border-bottom: 2px solid #e1e5ef;
+    text-align: left;
+}
+
+.song-list-table tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eef1f7;
+}
+
+.song-list-table tbody tr:hover {
+    background: #f9fbff;
+}
+
+.song-list-bottom-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Song list buttons / links */
 
 .sl-btn-primary {
     background: #345bdb;
     color: #fff;
     padding: 10px 16px;
-    border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
@@ -203,43 +303,204 @@ a {
     font-weight: 600;
 }
 
-.song-list-table-container {
-    overflow-x: auto;
-}
-
-.song-list-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-    background: #fff;
-}
-
-.song-list-table thead th {
-    background: #f4f6fa;
-    padding: 12px 14px;
-    font-weight: bold;
-    border-bottom: 2px solid #e1e5ef;
-}
-
-.song-list-table tbody td {
-    padding: 12px 14px;
-    border-bottom: 1px solid #eef1f7;
-}
-
-.song-list-table tbody tr:hover {
-    background: #f9fbff;
-}
-
 .sl-action-link {
     color: #2f54d8;
     text-decoration: none;
     font-weight: 600;
+    font-size: 13px;
 }
 
 .sl-action-link:hover {
     text-decoration: underline;
 }
 
-.song-list-bottom-actions {
+.sl-action-danger {
+    color: #d9534f;
+}
+
+/* ========== PLAYLIST PAGES ========== */
+
+.playlist-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 24px 26px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+}
+
+.playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 16px;
+}
+
+.playlist-title {
+    font-size: 24px;
+    margin: 0;
+}
+
+.playlist-subtitle {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: #666;
+}
+
+.playlist-section {
     margin-top: 20px;
+}
+
+.playlist-section-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.playlist-table-container {
+    overflow-x: auto;
+}
+
+.playlist-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.playlist-table thead th {
+    background: #f4f6fa;
+    padding: 10px 12px;
+    font-weight: bold;
+    border-bottom: 2px solid #e1e5ef;
+    text-align: left;
+}
+
+.playlist-table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eef1f7;
+}
+
+.playlist-table tbody tr:hover {
+    background: #f9fbff;
+}
+
+.playlist-audio {
+    width: 220px;
+}
+
+.empty-state {
+    padding: 16px 18px;
+    border-radius: 10px;
+    background: #f7f9ff;
+    border: 1px dashed #c2ceff;
+    font-size: 14px;
+}
+
+/* Pills / badges */
+
+.pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    border: none;
+}
+
+.pill-FREE {
+    background: #e6ffed;
+    color: #18794e;
+}
+
+.pill-PREMIUM {
+    background: #fff3cd;
+    color: #ad6800;
+}
+
+.pill-primary {
+    background: #345bdb;
+    color: #fff;
+}
+
+.pill-danger {
+    background: #ffe6e6;
+    color: #b21f2d;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-AVAILABLE {
+    background: #e6ffed;
+    color: #18794e;
+}
+
+.status-NOTAVAILABLE {
+    background: #ffeaea;
+    color: #b21f2d;
+}
+
+.badge-muted {
+    font-size: 12px;
+    color: #999;
+}
+
+/* ========== USER PLAYLIST LIST PAGE ========== */
+
+.user-playlists-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 24px 26px;
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+}
+
+.user-playlists-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    gap: 12px;
+}
+
+.user-playlists-title {
+    font-size: 22px;
+    margin: 0;
+}
+
+.user-playlists-create {
+    margin-bottom: 16px;
+}
+
+.up-create-form {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.up-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 9px 11px;
+    border-radius: 8px;
+    border: 1px solid #ccd3e0;
+    background: #f9fbff;
+    box-sizing: border-box;
+}
+
+.up-btn-primary {
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: none;
+    background: #345bdb;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
 }

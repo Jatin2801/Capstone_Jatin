@@ -6,39 +6,72 @@
 </head>
 <body>
 
-<div class="container">
-    <h2>Create Admin</h2>
+<div class="container register-container">
+    <h2>Register</h2>
 
-    <form action="/admin/add" method="post">
-    Name: <input type="text" name="adminName"><br/>
-    Username: <input type="text" name="username"><br/>
-    Password: <input type="password" name="password"><br/>
-    Email: <input type="text" name="email"><br/>
-    Mobile: <input type="text" name="mobileNo"><br/>
-    <button type="submit">Add </button>
-</form>
+    <div class="register-toggle">
+        <button type="button" id="adminToggle" class="toggle-btn active">
+            Register as Admin
+        </button>
+        <button type="button" id="userToggle" class="toggle-btn">
+            Register as User
+        </button>
+    </div>
 
-    <hr/>
+    <!-- ADMIN FORM -->
+    <form id="adminForm" class="register-form active" action="/admin/add" method="post">
+        <h3>Admin Details</h3>
+        <input type="text" name="adminName" placeholder="Name">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="mobileNo" placeholder="Mobile">
+        <button type="submit">Create Admin</button>
+    </form>
 
-    <h2>Create User</h2>
+    <!-- USER FORM -->
+    <form id="userForm" class="register-form" action="/user/add" method="post">
+        <h3>User Details</h3>
+        <input type="text" name="firstName" placeholder="First Name">
+        <input type="text" name="lastName" placeholder="Last Name">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <input type="text" name="email" placeholder="Email">
+        <input type="text" name="mobile" placeholder="Mobile">
+        <input type="text" name="city" placeholder="City">
+        <input type="text" name="state" placeholder="State">
+        <input type="text" name="country" placeholder="Country">
+        <button type="submit">Create User</button>
+    </form>
 
-  <form action="/user/add" method="post">
-    First Name: <input type="text" name="firstName"><br/>
-    Last Name: <input type="text" name="lastName"><br/>
-    Username: <input type="text" name="username"><br/>
-    Password: <input type="password" name="password"><br/>
-    Email: <input type="text" name="email"><br/>
-    Mobile: <input type="text" name="mobile"><br/>
-    City: <input type="text" name="city"><br/>
-    State: <input type="text" name="state"><br/>
-    Country: <input type="text" name="country"><br/>
-	
-    <button type="submit">Add </button>
-</form>
-
-    <a href="/"> Login</a>
+    <a href="/">Back to Login</a>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const adminToggle = document.getElementById('adminToggle');
+        const userToggle = document.getElementById('userToggle');
+        const adminForm = document.getElementById('adminForm');
+        const userForm = document.getElementById('userForm');
+
+        function showAdmin() {
+            adminForm.classList.add('active');
+            userForm.classList.remove('active');
+            adminToggle.classList.add('active');
+            userToggle.classList.remove('active');
+        }
+
+        function showUser() {
+            userForm.classList.add('active');
+            adminForm.classList.remove('active');
+            userToggle.classList.add('active');
+            adminToggle.classList.remove('active');
+        }
+
+        adminToggle.addEventListener('click', showAdmin);
+        userToggle.addEventListener('click', showUser);
+    });
+</script>
 
 </body>
 </html>
-

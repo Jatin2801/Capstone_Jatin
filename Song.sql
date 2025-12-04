@@ -17,4 +17,11 @@ CREATE TABLE songs_library (
     song_type VARCHAR(100),
     song_status VARCHAR(100)
 );
+truncate table songs_library;
+ALTER TABLE songs_library
+  ADD fileName VARCHAR(255),
+  ADD fileType VARCHAR(255),
+  ADD fileSize BIGINT,
+  ADD filePath VARCHAR(1024);
+
 

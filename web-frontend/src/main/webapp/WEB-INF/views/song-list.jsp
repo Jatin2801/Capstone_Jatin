@@ -10,65 +10,78 @@
 
 <div class="song-list-wrapper">
 
-    <h2 class="song-list-title">Available Songs</h2>
-
-    <div class="song-list-top-actions">
-        <a href="/songs/add">
-            <button class="sl-btn-primary">Add New Song</button>
-        </a>
+    <div class="song-list-header">
+        <h2 class="song-list-title">Available Songs</h2>
+        <div class="song-list-top-actions">
+            <a href="${pageContext.request.contextPath}/songs/add">
+                <button class="sl-btn-primary">+ Add Song</button>
+            </a>
+        </div>
     </div>
 
     <div class="song-list-table-container">
-        <table class="song-list-table" border="1" cellpadding="8">
-            <thead>
-                <tr>
-                    <th>ID</th>            
-                    <th>Title</th>            
-                    <th>Genre</th>      
-                    <th>Music Director</th>
-                    <th>Singer</th>
-                    <th>Release Date</th>
-                    <th>Album</th>
-                    <th>Type</th>
-                    <th>Status</th>
-                    <th>Play</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-
-            <tbody>
-            <c:forEach var="song" items="${songs}">
-                <tr>
-                    <td>${song.libraryId}</td>            
-                    <td>${song.songTitle}</td>            
-                    <td>${song.genre}</td>            
-                    <td>${song.musicDirector}</td>
-                    <td>${song.singer}</td>
-                    <td>${song.releaseDate}</td>
-                    <td>${song.albumName}</td>
-                    <td>${song.songType}</td>
-                    <td>${song.songStatus}</td>
-			<td>
-    <c:if test="${not empty song.fileName}">
-        <audio controls style="width:200px;">
-            <source src="${pageContext.request.contextPath}/songs/play/${song.libraryId}">
-        </audio>
-    </c:if>	
-				</td>
-                    <td>
-                        <a class="sl-action-link" href="/songs/edit/${song.libraryId}">Edit</a> |
-                        <a class="sl-action-link" href="/songs/delete/${song.libraryId}">Delete</a>
-                    </td>
-                    
-                    
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
+        <c:choose>
+            <c:when test="${empty songs}">
+                <div class="empty-state">
+                    <p>No songs found. Click “Add Song” to upload your first track.</p>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <table class="song-list-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Singer</th>
+                        <th>Genre</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="s" items="${songs}">
+                        <tr>
+                            <td>${s.libraryId}</td>
+                            <td>${s.songTitle}</td>
+                            <td>${s.singer}</td>
+                            <td>${s.genre}</td>
+                            <td>
+                                <span class="pill pill-${s.songType}">
+                                    ${s.songType}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="status-badge status-${s.songStatus}">
+                                    ${s.songStatus}
+                                </span>
+                            </td>
+                            <td>
+                                <a class="sl-action-link"
+                                   href="${pageContext.request.contextPath}/songs/play/${s.libraryId}">
+                                    Play
+                                </a>
+                                |
+                                <a class="sl-action-link"
+                                   href="${pageContext.request.contextPath}/songs/edit/${s.libraryId}">
+                                    Edit
+                                </a>
+                                |
+                                <a class="sl-action-link sl-action-danger"
+                                   href="${pageContext.request.contextPath}/songs/delete/${s.libraryId}">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </c:otherwise>
+        </c:choose>
     </div>
 
     <div class="song-list-bottom-actions">
-        <a href="/admin/dashboard">
+        <a href="${pageContext.request.contextPath}/admin/dashboard">
             <button class="sl-btn-secondary">Back to Dashboard</button>
         </a>
     </div>
