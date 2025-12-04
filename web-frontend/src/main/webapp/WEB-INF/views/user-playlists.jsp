@@ -1,70 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <html>
 <head>
     <title>My Playlists</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
 
-<div class="user-playlists-wrapper">
+<div class="content-block fade">
 
-    <div class="user-playlists-header">
-        <div>
-            <a href="${pageContext.request.contextPath}/user-dashboard">
-                <button type="button" class="sl-btn-secondary">&larr; Dashboard</button>
-            </a>
-        </div>
-        <h2 class="user-playlists-title">My Playlists</h2>
-    </div>
+    <h2 style="font-size:28px;margin-bottom:25px;text-align:center;">🎶 My Playlists</h2>
 
-    <div class="user-playlists-create">
-        <form method="post" action="${pageContext.request.contextPath}/playlists/create" class="up-create-form">
-            <input type="text" name="name" placeholder="Playlist name" required class="up-input" />
-            <input type="hidden" name="userId" value="${userId}" />
-            <button type="submit" class="up-btn-primary">+ Create Playlist</button>
-        </form>
-    </div>
+    <!-- CREATE NEW PLAYLIST -->
+    <form action="/playlists/create" method="post" style="text-align:center;margin-bottom:25px;">
+        <input type="hidden" name="userId" value="${userId}">
+        <input name="name" placeholder="Enter Playlist Name"
+               style="width:280px;padding:10px;border-radius:8px;background:#222;border:none;color:#fff;font-size:15px;">
+        <button style="margin-left:10px;">+ Create</button>
+    </form>
 
-    <div class="playlist-table-container">
-        <c:choose>
-            <c:when test="${empty playlists}">
-                <div class="empty-state">
-                    <p>You don’t have any playlists yet. Create your first one above!</p>
-                </div>
-            </c:when>
-            <c:otherwise>
-                <table class="playlist-table">
-                    <thead>
-                    <tr>
-                        
-                        <th>Name</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="p" items="${playlists}">
-                        <tr>
-                            
-                            <td>${p.name}</td>
-                            <td>
-                                <a class="sl-action-link"
-                                   href="${pageContext.request.contextPath}/playlists/view/${p.playlistId}?userId=${userId}">
-                                    Open
-                                </a>
-                                |
-                                <a class="sl-action-link sl-action-danger"
-                                   href="${pageContext.request.contextPath}/playlists/delete/${p.playlistId}?userId=${userId}">
-                                    Delete
-                                </a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </c:otherwise>
-        </c:choose>
+    <!-- PLAYLIST TABLE -->
+    <table class="table-dark" style="margin-top:10px;">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Playlist Name</th>
+                <th style="text-align:center;">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <c:forEach var="p" items="${playlists}">
+            <tr>
+                <td>${p.playlistId}</td>
+                <td>${p.name}</td>
+
+                <td style="text-align:center;">
+                    <a href="/playlists/view/${p.playlistId}?userId=${userId}">Open</a> &nbsp;|&nbsp;
+                    <a style="color:#ff4b4b;font-weight:700;"
+                       href="/playlists/delete/${p.playlistId}?userId=${userId}">
+                       Delete
+                    </a>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+    <!-- Back to user dashboard -->
+    <div style="margin-top:25px;text-align:center;">
+        <a href="/user/dashboard"><button class="btn-outline">⬅ Back</button></a>
     </div>
 
 </div>

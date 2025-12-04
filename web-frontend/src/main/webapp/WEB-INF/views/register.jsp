@@ -1,77 +1,50 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html>
-<head>
-    <title>Register</title>
-    <link rel="stylesheet" href="/resources/css/style.css">
-</head>
-<body>
+<html><head>
+<title>Register</title>
+<link rel="stylesheet" href="resources/css/style.css">
+</head><body>
 
-<div class="container register-container">
-    <h2>Register</h2>
+<div class="auth-container fade">
+    <h2>Create Account</h2>
 
-    <div class="register-toggle">
-        <button type="button" id="adminToggle" class="toggle-btn active">
-            Register as Admin
-        </button>
-        <button type="button" id="userToggle" class="toggle-btn">
-            Register as User
-        </button>
+    <div class="switch-box">
+        <div id="adminTab" class="switch-btn active">Admin</div>
+        <div id="userTab" class="switch-btn">User</div>
     </div>
 
     <!-- ADMIN FORM -->
-    <form id="adminForm" class="register-form active" action="/admin/add" method="post">
-        <h3>Admin Details</h3>
-        <input type="text" name="adminName" placeholder="Name">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="mobileNo" placeholder="Mobile">
-        <button type="submit">Create Admin</button>
+    <form id="adminForm" class="register-form active" action="admin/add" method="post">
+        <input type="text" name="adminName" placeholder="Name" required/>
+        <input type="text" name="username" placeholder="Username" required/>
+        <input type="password" name="password" placeholder="Password" required/>
+        <input type="email" name="email" placeholder="Email" required/>
+        <input type="text" name="mobileNo" placeholder="Mobile" required/>
+        <button>Create Admin</button>
     </form>
 
     <!-- USER FORM -->
-    <form id="userForm" class="register-form" action="/user/add" method="post">
-        <h3>User Details</h3>
-        <input type="text" name="firstName" placeholder="First Name">
-        <input type="text" name="lastName" placeholder="Last Name">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <input type="text" name="email" placeholder="Email">
-        <input type="text" name="mobile" placeholder="Mobile">
-        <input type="text" name="city" placeholder="City">
-        <input type="text" name="state" placeholder="State">
-        <input type="text" name="country" placeholder="Country">
-        <button type="submit">Create User</button>
+    <form id="userForm" class="register-form" action="user/add" method="post">
+        <input name="firstName" placeholder="First Name" required/>
+        <input name="lastName" placeholder="Last Name" required/>
+        <input name="username" placeholder="Username" required/>
+        <input type="password" name="password" placeholder="Password" required/>
+        <input name="email" placeholder="Email" required/>
+        <input name="mobile" placeholder="Mobile" required/>
+        <input name="city" placeholder="City"/>
+        <input name="state" placeholder="State"/>
+        <input name="country" placeholder="Country"/>
+        <button>Create User</button>
     </form>
-
-    <a href="/">Back to Login</a>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const adminToggle = document.getElementById('adminToggle');
-        const userToggle = document.getElementById('userToggle');
-        const adminForm = document.getElementById('adminForm');
-        const userForm = document.getElementById('userForm');
-
-        function showAdmin() {
-            adminForm.classList.add('active');
-            userForm.classList.remove('active');
-            adminToggle.classList.add('active');
-            userToggle.classList.remove('active');
-        }
-
-        function showUser() {
-            userForm.classList.add('active');
-            adminForm.classList.remove('active');
-            userToggle.classList.add('active');
-            adminToggle.classList.remove('active');
-        }
-
-        adminToggle.addEventListener('click', showAdmin);
-        userToggle.addEventListener('click', showUser);
-    });
+adminTab.onclick=()=>switchForm(true);userTab.onclick=()=>switchForm(false);
+function switchForm(admin){
+ adminForm.classList.toggle("active",admin);
+ userForm.classList.toggle("active",!admin);
+ adminTab.classList.toggle("active",admin);
+ userTab.classList.toggle("active",!admin);
+}
 </script>
 
-</body>
-</html>
+</body></html>

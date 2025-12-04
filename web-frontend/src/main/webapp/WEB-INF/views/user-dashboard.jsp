@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <title>User Dashboard</title>
@@ -6,23 +6,27 @@
 </head>
 <body>
 
-<div class="dashboard-container">
+<div class="dashboard-container fade">
     <h2>User Dashboard</h2>
 
-    
-    <a href="/playlists/user/${user.userId}">
-    <button style="background-color:#4CAF50;color:white;padding:10px 20px;border:none;border-radius:5px;">
-        Playlists
-    </button>
-</a>
-   <form action="/user/deleteAccount" method="post">
-    <input type="hidden" name="userId" value="${user.userId}">
-    <button type="submit">Delete My Account</button>
-</form>
-    
-<a href="/user/update-page?id=${user.userId}">Update My Profile</a><br/><br/>
+    <div class="btn-grid">
+        <a href="/user/playlists"><button>Playlists</button></a>
+    </div>
 
-    <a href="/"><button style="background:#333;">Logout</button></a>
+    <br>
+
+    <form action="/user/delete" method="post">
+        <input type="hidden" name="userId" value="${user.userId}">
+        <button>Delete My Account</button>
+    </form>
+
+    <br>
+    <a href="/user/update-page?id=${user.userId}">Update My Profile</a>
+
+    <br><br>
+
+    <!-- 🔥 Now same logout style as admin -->
+    <a href="/"><button class="btn-outline">Logout</button></a>
 </div>
 
 </body>

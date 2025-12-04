@@ -1,117 +1,39 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<html>
-<head>
-    <title>${mode}</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
-</head>
+<html><head><title>Add Song</title>
+<link rel="stylesheet" href="/resources/css/style.css"></head>
 <body>
 
-<div class="song-form-wrapper">
+<div class="content-block fade">
+<h2>Add Song</h2>
 
-    <div class="song-form-card">
+<form action="/songs/save" method="post" enctype="multipart/form-data">
 
-        <h2 class="song-form-title">${mode}</h2>
+    <c:if test="${not empty song.libraryId}">
+        <input type="hidden" name="libraryId" value="${song.libraryId}">
+    </c:if>
 
-        <form action="${pageContext.request.contextPath}/songs/save"
-              method="post"
-              enctype="multipart/form-data">
+    <input name="songTitle" value="${song.songTitle}" placeholder="Title">
+    <input name="genre" value="${song.genre}" placeholder="Genre">
+    <input name="musicDirector" value="${song.musicDirector}" placeholder="Director">
+    <input name="singer" value="${song.singer}" placeholder="Singer">
+    <input name="releaseDate" value="${song.releaseDate}" placeholder="YYYY-MM-DD">
+    <input name="albumName" value="${song.albumName}" placeholder="Album Name">
 
-            <c:if test="${not empty song.libraryId}">
-                <input type="hidden" name="libraryId" value="${song.libraryId}" />
-            </c:if>
+    <select name="songType">
+        <option ${song.songType=='FREE'?'selected':''}>FREE</option>
+        <option ${song.songType=='PREMIUM'?'selected':''}>PREMIUM</option>
+    </select>
 
-            <div class="sf-row">
-                <div class="sf-label">Title</div>
-                <div class="sf-input">
-                    <input type="text" name="songTitle" value="${song.songTitle}" required />
-                </div>
-            </div>
+    <select name="songStatus">
+        <option ${song.songStatus=='AVAILABLE'?'selected':''}>AVAILABLE</option>
+        <option ${song.songStatus=='NOTAVAILABLE'?'selected':''}>NOTAVAILABLE</option>
+    </select>
 
-            <div class="sf-row">
-                <div class="sf-label">Genre</div>
-                <div class="sf-input">
-                    <input type="text" name="genre" value="${song.genre}" />
-                </div>
-            </div>
+    <input type="file" name="file" accept="audio/*">
 
-            <div class="sf-row">
-                <div class="sf-label">Music Director</div>
-                <div class="sf-input">
-                    <input type="text" name="musicDirector" value="${song.musicDirector}" />
-                </div>
-            </div>
-
-            <div class="sf-row">
-                <div class="sf-label">Singer</div>
-                <div class="sf-input">
-                    <input type="text" name="singer" value="${song.singer}" />
-                </div>
-            </div>
-
-            <div class="sf-row">
-                <div class="sf-label">Release Date</div>
-                <div class="sf-input">
-                    <input type="text" name="releaseDate" value="${song.releaseDate}" placeholder="eg. 2024-01-01" />
-                </div>
-            </div>
-
-            <div class="sf-row">
-                <div class="sf-label">Album Name</div>
-                <div class="sf-input">
-                    <input type="text" name="albumName" value="${song.albumName}" />
-                </div>
-            </div>
-
-            <div class="sf-row">
-                <div class="sf-label">Song Type</div>
-                <div class="sf-input">
-                    <select name="songType">
-                        <option value="FREE"
-                                ${song.songType == 'FREE' ? 'selected' : ''}>FREE</option>
-                        <option value="PREMIUM"
-                                ${song.songType == 'PREMIUM' ? 'selected' : ''}>PREMIUM</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="sf-row">
-                <div class="sf-label">Status</div>
-                <div class="sf-input">
-                    <select name="songStatus">
-                        <option value="AVAILABLE"
-                                ${song.songStatus == 'AVAILABLE' ? 'selected' : ''}>AVAILABLE</option>
-                        <option value="NOTAVAILABLE"
-                                ${song.songStatus == 'NOTAVAILABLE' ? 'selected' : ''}>NOTAVAILABLE</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="sf-row">
-                <div class="sf-label">Audio File</div>
-                <div class="sf-input">
-                    <input type="file" name="file" accept="audio/*" />
-                    <c:if test="${not empty song.fileName}">
-                        <div class="sf-file-info">
-                            Current file: <strong>${song.fileName}</strong>
-                        </div>
-                    </c:if>
-                </div>
-            </div>
-
-            <div class="sf-actions">
-                <button type="submit">Save Song</button>
-                <a href="${pageContext.request.contextPath}/songs">
-                    <button type="button">Back</button>
-                </a>
-            </div>
-
-        </form>
-
-    </div>
-
+    <button class="save-btn">Save</button>
+</form>
 </div>
 
-</body>
-</html>
+</body></html>
