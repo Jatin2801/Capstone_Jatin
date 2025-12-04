@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpSession;
-
-
-
-
 import java.util.HashMap;
 import java.util.Map;
 

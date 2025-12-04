@@ -62,7 +62,7 @@
             <input name="email" placeholder="Enter Email" required/></div>
 
             <div class="field"><label>Mobile No</label>
-            <input name="mobileNo" placeholder="Enter Mobile Number" required/></div>
+            <input name="mobile" placeholder="Enter Mobile Number" required/></div>
 
             <div class="field"><label>City</label>
             <input name="city" placeholder="City"/></div>

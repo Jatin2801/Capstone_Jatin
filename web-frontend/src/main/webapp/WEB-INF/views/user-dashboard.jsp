@@ -15,7 +15,7 @@
 
     <br>
 
-    <form action="/user/delete" method="post">
+    <form action="/user/deleteAccount" method="post">
         <input type="hidden" name="userId" value="${user.userId}">
         <button>Delete My Account</button>
     </form>

@@ -14,6 +14,8 @@ CREATE TABLE users (
     country VARCHAR(50)
 );
 truncate table users;
+
+
 select * from users;
 
 USE user_db;

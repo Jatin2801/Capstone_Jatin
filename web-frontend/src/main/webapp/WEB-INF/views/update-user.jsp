@@ -22,6 +22,11 @@
             <label>Last Name</label>
             <input name="lastName" value="${user.lastName}" placeholder="Enter Last Name"/>
         </div>
+        
+        <div class="field">
+            <label>Username</label>
+            <input name="username" value="${user.username}" placeholder="Enter Mobile Number"/>
+        </div>
 
         <div class="field">
             <label>Email</label>
@@ -37,7 +42,21 @@
             <label>Mobile</label>
             <input name="mobile" value="${user.mobile}" placeholder="Enter Mobile Number"/>
         </div>
-
+		
+		<div class="field">
+            <label>City</label>
+            <input name="city" value="${user.city}" placeholder="Enter Mobile Number"/>
+        </div>
+		<div class="field">
+            <label>State</label>
+            <input name="state" value="${user.state}" placeholder="Enter Mobile Number"/>
+        </div>
+		<div class="field">
+            <label>Country</label>
+            <input name="country" value="${user.country}" placeholder="Enter Mobile Number"/>
+        </div>
+		
+			
         <button class="update-save">Save</button>
     </form>
 
