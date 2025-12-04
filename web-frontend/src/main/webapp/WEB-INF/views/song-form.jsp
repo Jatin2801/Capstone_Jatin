@@ -3,8 +3,11 @@
 <html><head><title>Add Song</title>
 <link rel="stylesheet" href="/resources/css/style.css"></head>
 <body>
-
-<div class="content-block fade">
+<div class="top-action-row" style="margin-left:20px ">
+    <a href="/admin/dashboard"><button class="btn-outline">⬅ Back</button></a>
+    <a href="/songs/add"><button>+ Add New</button></a>
+</div>
+<div class="content-block fade" style="margin-top:-20px ">
 <h2>Add Song</h2>
 
 <form action="/songs/save" method="post" enctype="multipart/form-data">

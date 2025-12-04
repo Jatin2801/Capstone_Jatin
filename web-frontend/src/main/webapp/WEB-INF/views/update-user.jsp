@@ -1,19 +1,47 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<html><head><title>Update User</title>
-<link rel="stylesheet" href="../resources/css/style.css"></head>
+<html>
+<head>
+    <title>Update User</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
+</head>
 <body>
 
 <div class="update-container fade">
-<h2>Update User</h2>
+    <h2>Update User</h2>
 
-<form action="../user/update" method="post">
-<input name="firstName" value="${user.firstName}"/>
-<input name="lastName" value="${user.lastName}"/>
-<input name="password" value="${user.password}"/>
-<input name="email" value="${user.email}"/>
-<input name="mobile" value="${user.mobile}"/>
-<button>Save</button>
-</form>
+    <form action="${pageContext.request.contextPath}/user/update" method="post" class="update-form">
+
+        <input type="hidden" name="userId" value="${user.userId}"/>
+
+        <div class="field">
+            <label>First Name</label>
+            <input name="firstName" value="${user.firstName}" placeholder="Enter First Name"/>
+        </div>
+
+        <div class="field">
+            <label>Last Name</label>
+            <input name="lastName" value="${user.lastName}" placeholder="Enter Last Name"/>
+        </div>
+
+        <div class="field">
+            <label>Email</label>
+            <input name="email" value="${user.email}" placeholder="Enter Email"/>
+        </div>
+
+        <div class="field">
+            <label>Password</label>
+            <input name="password" value="${user.password}" placeholder="Enter New Password"/>
+        </div>
+
+        <div class="field">
+            <label>Mobile</label>
+            <input name="mobile" value="${user.mobile}" placeholder="Enter Mobile Number"/>
+        </div>
+
+        <button class="update-save">Save</button>
+    </form>
 
 </div>
-</body></html>
+
+</body>
+</html>

@@ -10,7 +10,7 @@
     <h2>User Dashboard</h2>
 
     <div class="btn-grid">
-        <a href="/user/playlists"><button>Playlists</button></a>
+        <a href="${pageContext.request.contextPath}/playlists/user/${user.userId}"><button>Playlists</button></a>
     </div>
 
     <br>
