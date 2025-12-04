@@ -27,7 +27,7 @@
         </div>
     </c:if>
 
-    <!-- ================= SONGS INSIDE PLAYLIST ================= -->
+    
 
     <table class="table-dark" id="playlistTable" style="margin-top:25px;">
         <thead>
@@ -55,11 +55,7 @@
         </tbody>
     </table>
 
-    <!-- Player UI -->
     <div class="glass-player"><audio id="player" controls style="width:100%;"></audio></div>
-
-
-    <!-- ================= ADD SONG SECTION RESTORED ================= -->
 
     <h2 style="margin-top:40px;margin-bottom:12px;">Add Songs 🎶</h2>
 
@@ -109,7 +105,6 @@
 </div>
 
 
-<!-- ================== PLAYER LOGIC ================== -->
 <script>
 const audio  = document.getElementById("player");
 const rows   = [...document.querySelectorAll(".song-row")];

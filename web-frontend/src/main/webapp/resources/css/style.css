@@ -1,14 +1,11 @@
 @charset "UTF-8";
 
-/* ================================================================
-   🎨 GLOBAL THEME — DISTINCT, NOT SPOTIFY COPY
-================================================================ */
 :root {
-    --accent:#00c8ff;      
-    --accent2:#38f28b;     
-    --danger:#ff4e4e;      
-    --bg:#141618;          
-    --card:#1a1d1f;        
+    --accent:#00c8ff;
+    --accent2:#38f28b;
+    --danger:#ff4e4e;
+    --bg:#141618;
+    --card:#1a1d1f;
     --input:#24282b;
     --hover:#1e2327;
     --text:#e9e9e9;
@@ -17,20 +14,14 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Inter",sans-serif;}
 body{min-height:100vh;background:var(--bg);color:var(--text);}
 
-/* ================================================================
-   LINKS
-================================================================ */
 a{color:var(--accent2);font-weight:600;text-decoration:none;}
 a:hover{text-decoration:underline;}
 a.danger{color:var(--danger)!important;}
 
-/* ================================================================
-   BUTTONS
-================================================================ */
 button{
     background:linear-gradient(135deg,var(--accent),var(--accent2));
     border:none;padding:10px 22px;border-radius:14px;color:#000;
-    font-size:15px;font-weight:700;cursor:pointer;transition:.25s ease;
+    font-size:15px;font-weight:700;cursor:pointer;transition:.25s;
 }
 button:hover{transform:scale(1.08);opacity:.88;}
 
@@ -39,9 +30,6 @@ button:hover{transform:scale(1.08);opacity:.88;}
 }
 .btn-outline:hover{background:var(--accent);color:#000;}
 
-/* ================================================================
-   PANELS / CONTAINERS
-================================================================ */
 .content-block,
 .dashboard-container,
 .playlist-container,
@@ -51,7 +39,6 @@ button:hover{transform:scale(1.08);opacity:.88;}
     border-radius:20px;padding:36px;box-shadow:0 0 28px rgba(0,0,0,.45);
 }
 
-/* UPDATE FORMS ================================================= */
 .update-form{
     display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:25px;
 }
@@ -66,22 +53,16 @@ button:hover{transform:scale(1.08);opacity:.88;}
     grid-column:span 2;width:220px;margin:20px auto 0;font-size:18px;padding:14px 26px;border-radius:18px;
 }
 
-/* FIELD LABELS ================================================= */
 .field{
     display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:600;color:#cfcfcf;text-align:left;
 }
 
-/* HEADINGS ===================================================== */
 h1,h2,h3{font-family:'Poppins',sans-serif;letter-spacing:.7px;font-weight:700;}
 h1{font-size:32px;}h2{font-size:27px;}h3{font-size:20px;}
-.fade{animation:fadeIn .5s;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.fade{animation:fadeIn .5s;} @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
-/* AUTH CONTAINERS ============================================= */
 .auth-container{max-width:460px;padding:40px;margin-top:100px;text-align:center;}
 
-/* ================================================================
-   REGISTER FORM SLIDE SYSTEM
-================================================================ */
 .form-slider{
     width:100%;
     position:relative;
@@ -89,138 +70,110 @@ h1{font-size:32px;}h2{font-size:27px;}h3{font-size:20px;}
     transition:height .4s ease;
 }
 
-
-/* Forms are placed horizontally and slide in/out */
 .register-slide{
     width:100%;position:absolute;top:0;transition:.45s ease;
 }
 
-/* Default State */
-#adminForm{margin-left:0px;}         /* Visible */
-#userForm {margin-left:-1200px;}     /* Hidden Left */
+#adminForm{margin-left:0px;}
+#userForm {margin-left:-1200px;}
 
-/* Input Styling */
 .register-slide .field input{
     height:46px;border-radius:10px;padding:0 14px;font-size:15px;color:white;
     background:var(--input);border:1px solid #333;margin-top:6px;
 }
 .register-slide input:focus{outline:2px solid var(--accent);transform:scale(1.02);transition:.2s;}
 
-/* Submit */
 .register-slide button{
     width:200px;margin:14px auto;font-size:17px;padding:12px 26px;border-radius:18px;
 }
 
-/* Switch Buttons */
 .switch-box{display:flex;gap:10px;margin-bottom:22px;}
 .switch-btn{
     flex-grow:1;background:var(--hover);padding:12px;border-radius:14px;font-weight:700;
-    cursor:pointer;transition:.25s;text-align:center;
+    cursor:pointer;transition:.25s;text-align:center;color:white;
 }
 .switch-btn.active{
     background:linear-gradient(135deg,var(--accent),var(--accent2));color:#000;
     transform:scale(1.03);
 }
 
-/* Other modules below stay unchanged ============================ */
 .dashboard-container{text-align:center;max-width:700px;}
 .btn-grid{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+
 .content-block input,.content-block select{
     width:100%;height:46px;margin-bottom:14px;padding:0 14px;border-radius:10px;background:var(--input);
     border:1px solid #333;color:white;font-size:15px;
 }
 input:focus{outline:2px solid var(--accent);}
+
 .save-btn{font-size:17px;padding:14px 30px;border-radius:20px;}
 .top-action-row{display:flex;justify-content:space-between;margin-bottom:18px;}
-.table-dark{width:100%;border-collapse:collapse;font-size:15px;margin-top:10px;}
-.table-dark th{background:#202428;color:var(--accent2);padding:14px;font-size:15px;}
-.table-dark td{padding:14px;border-bottom:1px solid #333;}
+
+.table-dark{
+    width:100%;border-collapse:collapse;font-size:15px;margin-top:10px;
+}
+.table-dark th{
+    background:#202428;color:var(--accent2);padding:16px 10px;font-size:16px;text-align:center;letter-spacing:.5px;
+}
+.table-dark td{
+    padding:14px 10px;text-align:center;
+}
+.table-dark td:nth-child(1),
+.table-dark th:nth-child(1){width:40px;}
+
+.table-dark td:nth-child(2),
+.table-dark th:nth-child(2){width:250px;}
+
 .table-dark tr:hover{background:var(--hover);}
+
 .playlist-container{text-align:center;padding-top:40px;}
 .play-title{font-size:32px;margin-bottom:6px;}
 .play-sub{color:#aaa;margin-bottom:20px;}
-.player-bar{background:#111;padding:14px;border-radius:18px;display:flex;gap:12px;justify-content:center;margin-bottom:25px;
-    box-shadow:0 0 18px rgba(0,0,0,.55);}
-.player-btn{width:46px;height:46px;border-radius:12px;background:#0d0d0e;border:none;color:var(--accent2);
-    font-size:18px;font-weight:900;cursor:pointer;transition:.25s;}
+
+.player-bar{
+    background:#111;padding:14px;border-radius:18px;display:flex;gap:12px;justify-content:center;margin-bottom:25px;
+    box-shadow:0 0 18px rgba(0,0,0,.55);
+}
+.player-btn{
+    width:46px;height:46px;border-radius:12px;background:#0d0d0e;border:none;color:var(--accent2);
+    font-size:18px;font-weight:900;cursor:pointer;transition:.25s;
+}
 .player-btn:hover{background:var(--accent);color:#000;transform:scale(1.2);}
-.small-play-btn{background:var(--accent);color:#000;width:36px;height:36px;border:none;border-radius:10px;font-weight:900;font-size:16px;transition:.25s;}
+
+.small-play-btn{
+    background:var(--accent);color:#000;width:36px;height:36px;border:none;border-radius:10px;font-weight:900;font-size:16px;transition:.25s;
+}
 .small-play-btn:hover{transform:scale(1.18);}
+
 .song-row.playing{background:#082a33!important;border-left:4px solid var(--accent);}
 .glass-player{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);padding:14px;border-radius:14px;margin-top:18px;}
-input.playlist-input{width:260px;border-radius:10px;padding:10px;background:var(--input);color:white;border:1px solid #333;font-size:15px;}
-input.playlist-input:focus{outline:2px solid var(--accent);}
-/* Default switch button text color */
-.switch-btn { 
-    color:white;
-}
 
-/* Active tab → black text */
-.switch-btn.active { 
-    color:#000 !important;
+input.playlist-input{
+    width:260px;border-radius:10px;padding:10px;background:var(--input);
+    color:white;border:1px solid #333;font-size:15px;
 }
-/* ================= LOGIN PAGE ================= */
+input.playlist-input:focus{outline:2px solid var(--accent);}
 
 .login-wrapper{
-    width:90%;
-    max-width:600px;
-    margin:90px auto;
-    background:var(--card);
-    padding:40px;
-    border-radius:22px;
-    text-align:center;
-    box-shadow:0 0 30px rgba(0,0,0,.45);
+    width:90%;max-width:600px;margin:90px auto;background:var(--card);
+    padding:40px;border-radius:22px;text-align:center;box-shadow:0 0 30px rgba(0,0,0,.45);
 }
-
-.login-title{
-    margin-top:25px;
-    font-size:22px;
-}
+.login-title{margin-top:25px;font-size:22px;}
 
 .login-form{
-    margin-top:15px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-    align-items:center;
+    margin-top:15px;display:flex;flex-direction:column;gap:14px;align-items:center;
 }
-
 .login-form input{
-    width:80%;
-    height:44px;
-    border-radius:10px;
-    border:1px solid #333;
-    background:var(--input);
-    color:white;
-    padding:0 14px;
-    font-size:15px;
+    width:80%;height:44px;border-radius:10px;border:1px solid #333;background:var(--input);
+    color:white;padding:0 14px;font-size:15px;
 }
 .login-form input:focus{outline:2px solid var(--accent);}
+.login-btn{width:70%;font-size:17px;padding:12px;border-radius:18px;margin-top:8px;}
 
-.login-btn{
-    width:70%;
-    font-size:17px;
-    padding:12px;
-    border-radius:18px;
-    margin-top:8px;
-}
-
-/* Divider line */
 .divider{
-    width:85%;
-    border:0;
-    border-top:1px solid #444;
-    margin:30px auto;
-    opacity:.6;
+    width:85%;border:0;border-top:1px solid #444;margin:30px auto;opacity:.6;
 }
-
-/* Create Account link */
 .create-link{
-    display:block;
-    font-size:18px;
-    margin-top:20px;
-    font-weight:700;
-    color:var(--accent2);
+    display:block;font-size:18px;margin-top:20px;font-weight:700;color:var(--accent2);
 }
 .create-link:hover{color:var(--accent);}
-
