@@ -338,3 +338,44 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
 .song-row:hover:not(.playing) {
     background:var(--hover) !important;
 }
+
+.login-wrapper {
+    position: relative;
+    padding-top: 120px; /* space for logo + title */
+}
+
+
+.login-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95px;
+    height: 95px;
+    background-image: url("https://i.ibb.co/GvDRKVps/logo.png");
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+    box-shadow: 0 0 18px rgba(0, 200, 255, .45);
+}
+
+
+.login-wrapper h1::before {
+    content: "FlowTune";
+    display: block;
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 10px;
+
+    background: linear-gradient(135deg, #00d4ff, #38ff91);
+    -webkit-background-clip: text;
+    color: transparent;
+
+    letter-spacing: 1px;
+}
+
+
+.switch-box { margin-top: 20px !important; }
+.create-link { margin-top: 35px !important; }
+ 

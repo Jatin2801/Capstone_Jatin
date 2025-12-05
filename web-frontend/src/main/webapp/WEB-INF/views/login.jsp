@@ -7,22 +7,16 @@
 
 <body>
 
-
-
 <div class="login-wrapper fade" style="margin-top:-20px">
 
     <h1>Login</h1>
-
-    <!-- Tabs – Default = USER selected -->
     <div class="switch-box" style="margin-top:25px;">
         <button id="userTab"  class="switch-btn active">User</button>
         <button id="adminTab" class="switch-btn">Admin</button>
     </div>
 
-    <!-- SLIDER -->
     <div class="form-slider login-slider">
 
-        <!-- USER LOGIN (shown by default) -->
         <form id="userLogin" class="register-slide" action="${pageContext.request.contextPath}/user/login" method="post">
 
             <div class="field"><label>Username</label>
@@ -34,7 +28,6 @@
             <button class="login-btn">Login as User</button>
         </form>
 
-        <!-- ADMIN LOGIN (hidden initially, slides in) -->
         <form id="adminLogin" class="register-slide" action="${pageContext.request.contextPath}/admin/login" method="post" 
               style="margin-left:1200px;">
 
@@ -52,8 +45,6 @@
     <a href="/register" class="create-link" style="margin-top:25px;display:block;">Create an Account</a>
 </div>
 
-
-<!-- ⭐ LOGIN TAB SWITCH SCRIPT -->
 <script>
 let uForm = document.getElementById("userLogin");
 let aForm = document.getElementById("adminLogin");

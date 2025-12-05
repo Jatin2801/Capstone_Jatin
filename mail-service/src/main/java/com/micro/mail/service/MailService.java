@@ -29,7 +29,7 @@ public class MailService {
 
     public void sendAdminAccountCreated(String email, String adminName) {
         String subject = "Admin Account Created";
-        String body = "Hello " + adminName + ", your admin account is active.";
+        String body = "Hello " + adminName + ", your admin account is created sucessfully.";
         send(email, subject, body);
     }
 

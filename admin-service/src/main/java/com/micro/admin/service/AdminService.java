@@ -62,15 +62,24 @@ public class AdminService {
 
     private void sendAdminCreatedMail(Admin admin) {
         try {
-            if (admin.getEmail() == null || admin.getEmail().isEmpty()) {
-                return;
-            }
-            String email = admin.getEmail();
-            String name = admin.getAdminName() == null ? "" : admin.getAdminName();
-            String encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8);
-            String url = mailServiceUrl + "/mail/admin/account-created?email=" + email + "&adminName=" + encodedName;
-            restTemplate.postForEntity(url, null, String.class);
+            if(admin.getEmail() == null || admin.getEmail().isEmpty()) return;
+
+            var body = new java.util.HashMap<String, String>();
+            body.put("email", admin.getEmail());
+            body.put("adminName", admin.getAdminName());
+
+            restTemplate.postForEntity(
+                    mailServiceUrl + "/mail/admin/account-created",
+                    body,  // JSON Body
+                    String.class
+            );
+
+            System.out.println("📩 ADMIN MAIL SENT --> " + admin.getEmail());
+
         } catch (Exception e) {
+            System.err.println("❌ ADMIN MAIL ERROR: " + e.getMessage());
+            e.printStackTrace();
         }
     }
+
 }
