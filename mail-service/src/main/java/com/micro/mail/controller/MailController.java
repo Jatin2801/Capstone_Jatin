@@ -15,20 +15,28 @@ public class MailController {
     }
 
     @PostMapping("/user/account-created")
-    public ResponseEntity<String> userAccountCreated(@RequestParam String email, @RequestParam String username) {
-        service.sendUserAccountCreated(email, username);
+    public ResponseEntity<String> userAccountCreated(@RequestBody MailRequest req) {
+        service.sendUserAccountCreated(req.email, req.username);
         return ResponseEntity.ok("User account mail sent");
     }
 
     @PostMapping("/admin/account-created")
-    public ResponseEntity<String> adminAccountCreated(@RequestParam String email, @RequestParam String adminName) {
-        service.sendAdminAccountCreated(email, adminName);
+    public ResponseEntity<String> adminAccountCreated(@RequestBody MailRequest req) {
+        service.sendAdminAccountCreated(req.email, req.adminName);
         return ResponseEntity.ok("Admin account mail sent");
     }
 
     @PostMapping("/song/added")
-    public ResponseEntity<String> songAdded(@RequestParam String email, @RequestParam String songTitle) {
-        service.sendSongAdded(email, songTitle);
+    public ResponseEntity<String> songAdded(@RequestBody MailRequest req) {
+        service.sendSongAdded(req.email, req.songTitle);
         return ResponseEntity.ok("Song added mail sent");
     }
+
+    public static class MailRequest {
+        public String email;
+        public String username;
+        public String adminName;
+        public String songTitle;
+    }
 }
+

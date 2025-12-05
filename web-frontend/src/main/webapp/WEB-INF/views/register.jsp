@@ -12,16 +12,16 @@
 
     <h2>Create Account</h2>
 
-    <!-- Switch Tabs -->
+
     <div class="switch-box">
         <button id="adminTab" class="switch-btn active">Admin</button>
         <button id="userTab" class="switch-btn">User</button>
     </div>
 
-    <!-- Wrapper to hold both forms side-by-side -->
+    
     <div class="form-slider">
 
-        <!-- ADMIN FORM (Starts Visible @ 0px) -->
+    
         <form id="adminForm" class="register-slide" action="${pageContext.request.contextPath}/admin/add" method="post">
 
             <div class="field"><label>Full Name</label>
@@ -43,7 +43,7 @@
         </form>
 
 
-        <!-- USER FORM (Starts off-screen @ -1200px) -->
+        
         <form id="userForm" class="register-slide" action="${pageContext.request.contextPath}/user/add" method="post">
 
             <div class="field"><label>First Name</label>
@@ -112,8 +112,6 @@ function slideUser(){
 
     adjustHeight();
 }
-
-
 adminTab.onclick = slideAdmin;
 userTab.onclick  = slideUser;
 window.onload = adjustHeight; 

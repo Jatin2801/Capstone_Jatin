@@ -14,7 +14,7 @@ CREATE TABLE users (
     country VARCHAR(50)
 );
 truncate table users;
-
+truncate table users;
 
 select * from users;
 
