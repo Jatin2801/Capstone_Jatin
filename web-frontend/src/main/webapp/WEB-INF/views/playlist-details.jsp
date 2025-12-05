@@ -96,20 +96,48 @@
 </div>
 
 <script>
-const audio  = document.getElementById("player");
-const rows   = [...document.querySelectorAll(".song-row")];
+const audio = document.getElementById("player");
+const rows  = [...document.querySelectorAll(".song-row")];
 
-let index  = 0;
+let currentIndex = -1;
 let repeat = false;
 
-function playSong() {
-    const row = rows[index];
-    if (!row) return;
-    audio.src = row.dataset.src;
-    audio.play();
+function highlightRow() {
+    rows.forEach((row, i) => {
+        if (i === currentIndex) {
+            row.classList.add("playing");
+        } else {
+            row.classList.remove("playing");
+        }
+    });
 }
 
-rows.forEach((row,i) => row.querySelector(".small-play-btn").onclick = () => { index=i; playSong(); });
+function loadSong(idx) {
+    if (idx < 0 || idx >= rows.length) return;
+    currentIndex = idx;
+    const row = rows[currentIndex];
+    if (!row) return;
+    audio.src = row.dataset.src;       
+    highlightRow();
+}
+
+function playCurrent() {
+    if (rows.length === 0) return;
+    if (currentIndex === -1) {
+        loadSong(0);                   
+    }
+    audio.play();                      
+}
+
+
+rows.forEach((row, i) => {
+    const btn = row.querySelector(".small-play-btn");
+    if (!btn) return;
+    btn.onclick = () => {
+        loadSong(i);                   
+        playCurrent();                 
+    };
+});
 
 const playBtn    = document.getElementById("playBtn");
 const stopBtn    = document.getElementById("stopBtn");
@@ -119,16 +147,55 @@ const shuffleBtn = document.getElementById("shuffleBtn");
 const repeatBtn  = document.getElementById("repeatBtn");
 
 if (playBtn && stopBtn && nextBtn && prevBtn && shuffleBtn && repeatBtn) {
-    playBtn.onclick    = () => playSong();
-    stopBtn.onclick    = () => audio.pause();
-    nextBtn.onclick    = () => { index=(index+1)%rows.length; playSong(); };
-    prevBtn.onclick    = () => { index=(index-1+rows.length)%rows.length; playSong(); };
-    shuffleBtn.onclick = () => { index=Math.floor(Math.random()*rows.length); playSong(); };
-    repeatBtn.onclick  = () => repeat = !repeat;
+
+    playBtn.onclick = () => {
+        playCurrent();
+    };
+
+    stopBtn.onclick = () => {
+        audio.pause();
+    };
+
+    nextBtn.onclick = () => {
+        if (rows.length === 0) return;
+        let idx = currentIndex;
+        if (idx === -1) idx = 0;
+        else idx = (currentIndex + 1) % rows.length;
+        loadSong(idx);
+        playCurrent();
+    };
+
+    prevBtn.onclick = () => {
+        if (rows.length === 0) return;
+        let idx = currentIndex;
+        if (idx === -1) idx = 0;
+        else idx = (currentIndex - 1 + rows.length) % rows.length;
+        loadSong(idx);
+        playCurrent();
+    };
+
+    shuffleBtn.onclick = () => {
+        if (rows.length === 0) return;
+        const idx = Math.floor(Math.random() * rows.length);
+        loadSong(idx);
+        playCurrent();
+    };
+
+    repeatBtn.onclick = () => {
+        repeat = !repeat;
+    };
 }
 
-audio.onended = () => repeat ? playSong() : (nextBtn ? nextBtn.click() : null);
+audio.onended = () => {
+    if (repeat) {
+        audio.currentTime = 0;
+        audio.play();
+    } else if (nextBtn) {
+        nextBtn.click();
+    }
+};
 </script>
+
 
 </body>
 </html>

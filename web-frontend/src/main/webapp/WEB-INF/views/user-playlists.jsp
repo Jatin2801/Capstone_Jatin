@@ -24,8 +24,8 @@
     <table class="table-dark" style="margin-top:10px;">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Playlist Name</th>
+                
+                <th> Name</th>
                 <th style="text-align:center;">Actions</th>
             </tr>
         </thead>
@@ -33,7 +33,6 @@
         <tbody>
         <c:forEach var="p" items="${playlists}">
             <tr>
-                <td>${p.playlistId}</td>
                 <td>${p.name}</td>
 
                 <td style="text-align:center;">
