@@ -250,3 +250,20 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
     opacity:.45;
 }
 
+/* Ensure ONLY the playing song shows highlight */
+.song-row {
+    border-left:4px solid transparent; /* default = no highlight */
+    transition:0.25s;
+}
+
+.song-row.playing {
+    background:#002b33 !important;  /* better visible than current */
+    border-left-color:var(--accent2) !important;
+}
+
+/* Hover should NOT override playing style */
+.song-row:hover:not(.playing) {
+    background:var(--hover) !important;
+}
+
+
