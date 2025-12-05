@@ -55,7 +55,7 @@ public class SongService {
 
         Song s = opt.get();
 
-        // copy normal fields
+        
         s.setSongTitle(newData.getSongTitle());
         s.setGenre(newData.getGenre());
         s.setMusicDirector(newData.getMusicDirector());
@@ -119,4 +119,15 @@ public class SongService {
         Path dir = Paths.get(storageDir);
         if (!Files.exists(dir)) Files.createDirectories(dir);
     }
+    
+    public List<Song> search(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty())
+            return repo.findAll(); // return all if user enters nothing
+
+        keyword = keyword.trim();
+        return repo.findBySongTitleContainingIgnoreCaseOrMusicDirectorContainingIgnoreCaseOrSingerContainingIgnoreCase(
+                keyword, keyword, keyword
+        );
+    }
+
 }

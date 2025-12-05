@@ -8,14 +8,14 @@
 </head>
 <body>
 <div style="margin-left:15px ; margin-top:15px">
-        <a href="/user/dashboard"><button class="btn-outline">⬅ Back</button></a>
-    </div>
+    <a href="/user/dashboard"><button class="btn-outline">⬅ Back</button></a>
+</div>
+
 <div class="playlist-container fade">
 
     <h1 class="play-title">${playlist.name}</h1>
     <p class="play-sub">Enjoy your music 🎧</p>
 
-   
     <c:if test="${not empty songsInPlaylist}">
         <div class="player-bar">
             <button id="prevBtn"     class="player-btn">⏮</button>
@@ -27,21 +27,48 @@
         </div>
     </c:if>
 
-    
+<form method="get"
+      action="/playlists/view/${playlist.playlistId}"
+      style="display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; margin:30px 0;">
 
-    <table class="table-dark" id="playlistTable" style="margin-top:25px;">
+    <input type="hidden" name="userId" value="${userId}" />
+
+    <input type="text" name="songName" value="${songName}"
+           placeholder="Search by Song"
+           class="playlist-input" style="width:240px;" />
+
+    <input type="text" name="musicDirector" value="${musicDirector}"
+           placeholder="Search by Director"
+           class="playlist-input" style="width:240px;" />
+
+    <input type="text" name="album" value="${album}"
+           placeholder="Search by Album"
+           class="playlist-input" style="width:220px;" />
+
+    <button type="submit">Search</button>
+
+    <a href="/playlists/view/${playlist.playlistId}?userId=${userId}">
+        <button type="button" class="btn-outline">Clear</button>
+    </a>
+</form>
+
+
+
+    
+    <table class="table-dark" style="margin-top:20px;">
         <thead>
         <tr>
-            <th>#</th><th>Title</th><th>Singer</th><th>Type</th><th>Play</th><th>Remove</th>
+            <th>#</th><th>Title</th><th>Singer</th><th>Director</th><th>Album</th><th>Type</th><th>Play</th><th>Action</th>
         </tr>
         </thead>
-
         <tbody>
         <c:forEach var="s" items="${songsInPlaylist}" varStatus="i">
             <tr class="song-row" data-src="/songs/play/${s.libraryId}">
                 <td>${i.index + 1}</td>
                 <td>${s.songTitle}</td>
                 <td>${s.singer}</td>
+                <td>${s.musicDirector}</td>
+                <td>${s.albumName}</td>
                 <td>${s.songType}</td>
 
                 <td><button class="small-play-btn">▶</button></td>
@@ -55,79 +82,52 @@
         </tbody>
     </table>
 
-    <div class="glass-player"><audio id="player" controls style="width:100%;"></audio></div>
+    <div class="glass-player">
+        <audio id="player" controls style="width:100%;"></audio>
+    </div>
 
-    <h2 style="margin-top:40px;margin-bottom:12px;">Add Songs 🎶</h2>
-
-    <table class="table-dark">
-        <thead>
-        <tr>
-            <th>Title</th><th>Type</th><th>Status</th><th>Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="s" items="${allSongs}">
-            <tr>
-                <td>${s.songTitle}</td>
-                <td>${s.songType}</td>
-                <td>${s.songStatus}</td>
-
-                <td>
-                    <c:choose>
-
-                        <c:when test="${s.songStatus == 'NOTAVAILABLE'}">
-                            <span style="color:#777;">Not Available</span>
-                        </c:when>
-
-                        <c:when test="${s.songType == 'PREMIUM'}">
-                            <form method="post" action="/playlists/buy-and-add/${playlist.playlistId}/${s.libraryId}">
-                                <input type="hidden" name="userId" value="${userId}" />
-                                <button style="background:#f9c305;color:black;">Buy + Add</button>
-                            </form>
-                        </c:when>
-
-                        <c:otherwise>
-                            <form method="post" action="/playlists/add/${playlist.playlistId}/${s.libraryId}">
-                                <input type="hidden" name="userId" value="${userId}" />
-                                <button>Add</button>
-                            </form>
-                        </c:otherwise>
-
-                    </c:choose>
-                </td>
-            </tr>
-        </c:forEach>
-        </tbody>
-    </table>
-
-    
+    <!-- Button to go to Add Songs page -->
+    <div style="margin-top:30px;">
+        <a href="/playlists/add/${playlist.playlistId}?userId=${userId}">
+            <button>+ Add Songs</button>
+        </a>
+    </div>
 
 </div>
-
 
 <script>
 const audio  = document.getElementById("player");
 const rows   = [...document.querySelectorAll(".song-row")];
-let index    = 0;
-let repeat   = false;
+
+let index  = 0;
+let repeat = false;
 
 function playSong() {
-    rows.forEach(r => r.classList.remove("playing"));
-    rows[index].classList.add("playing");
-    audio.src = rows[index].dataset.src;
+    const row = rows[index];
+    if (!row) return;
+    audio.src = row.dataset.src;
     audio.play();
 }
 
 rows.forEach((row,i) => row.querySelector(".small-play-btn").onclick = () => { index=i; playSong(); });
 
-playBtn.onclick    = () => playSong();
-stopBtn.onclick    = () => audio.pause();
-nextBtn.onclick    = () => { index=(index+1)%rows.length; playSong(); };
-prevBtn.onclick    = () => { index=(index-1+rows.length)%rows.length; playSong(); };
-shuffleBtn.onclick = () => { index=Math.floor(Math.random()*rows.length); playSong(); };
-repeatBtn.onclick  = () => repeat = !repeat;
+const playBtn    = document.getElementById("playBtn");
+const stopBtn    = document.getElementById("stopBtn");
+const nextBtn    = document.getElementById("nextBtn");
+const prevBtn    = document.getElementById("prevBtn");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const repeatBtn  = document.getElementById("repeatBtn");
 
-audio.onended = () => repeat ? playSong() : nextBtn.click();
+if (playBtn && stopBtn && nextBtn && prevBtn && shuffleBtn && repeatBtn) {
+    playBtn.onclick    = () => playSong();
+    stopBtn.onclick    = () => audio.pause();
+    nextBtn.onclick    = () => { index=(index+1)%rows.length; playSong(); };
+    prevBtn.onclick    = () => { index=(index-1+rows.length)%rows.length; playSong(); };
+    shuffleBtn.onclick = () => { index=Math.floor(Math.random()*rows.length); playSong(); };
+    repeatBtn.onclick  = () => repeat = !repeat;
+}
+
+audio.onended = () => repeat ? playSong() : (nextBtn ? nextBtn.click() : null);
 </script>
 
 </body>

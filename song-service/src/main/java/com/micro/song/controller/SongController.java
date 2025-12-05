@@ -20,7 +20,7 @@ public class SongController {
         this.service = service;
     }
 
-    // Accept form data with fields + optional file
+    
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Song save(
             @RequestPart("song") Song song,
@@ -38,6 +38,11 @@ public class SongController {
     @GetMapping
     public List<Song> all() {
         return service.all();
+    }
+    
+    @GetMapping("/search")
+    public List<Song> search(@RequestParam String keyword) {
+        return service.search(keyword);
     }
 
     @GetMapping("/{id}")
@@ -91,7 +96,7 @@ public class SongController {
                 .body(resource);
     }
 
-    // helper class for response from service
+    // helper class
     public record FileInfo(
             java.io.InputStream inputStream,
             String fileName,
