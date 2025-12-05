@@ -100,6 +100,94 @@ h1{font-size:32px;}h2{font-size:27px;}h3{font-size:20px;}
 .dashboard-container{text-align:center;max-width:700px;}
 .btn-grid{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
 
+/* Admin/User dashboard enhancements */
+.admin-dash{
+    max-width:850px;
+    text-align:left;
+}
+.dash-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+.dash-title-block{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+.dash-title-main{
+    font-size:30px;
+}
+.dash-title-sub{
+    font-size:14px;
+    color:#9ea4b0;
+}
+.dash-logout{
+    padding:9px 18px;
+    border-radius:14px;
+}
+
+.dash-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:18px;
+    margin-bottom:26px;
+}
+.dash-card{
+    display:block;
+    background:var(--hover);
+    border-radius:16px;
+    padding:16px 18px;
+    text-align:left;
+    box-shadow:0 0 20px rgba(0,0,0,.35);
+    transition:.25s;
+    color:var(--text);
+    text-decoration:none;
+}
+.dash-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 26px rgba(0,0,0,.55);
+}
+.dash-card-title{
+    font-weight:700;
+    font-size:16px;
+    margin-bottom:6px;
+}
+.dash-card-sub{
+    font-size:13px;
+    color:#a0a7b3;
+}
+
+.dash-danger{
+    margin-top:4px;
+    padding:16px 18px;
+    border-radius:16px;
+    background:#241416;
+    border:1px solid rgba(255,78,78,0.4);
+}
+.dash-danger h3{
+    margin-bottom:6px;
+    color:var(--danger);
+    font-size:18px;
+}
+.dash-danger p{
+    font-size:13px;
+    color:#e4cfd1;
+    margin-bottom:10px;
+}
+.danger-btn{
+    background:#ff4e4e;
+    border-radius:14px;
+    color:#fff;
+    padding:10px 22px;
+    font-weight:700;
+}
+.danger-btn:hover{
+    transform:scale(1.04);
+    opacity:.9;
+}
+
 .content-block input,.content-block select{
     width:100%;height:46px;margin-bottom:14px;padding:0 14px;border-radius:10px;background:var(--input);
     border:1px solid #333;color:white;font-size:15px;
@@ -120,10 +208,8 @@ input:focus{outline:2px solid var(--accent);}
 }
 .table-dark td:nth-child(1),
 .table-dark th:nth-child(1){width:40px;}
-
 .table-dark td:nth-child(2),
 .table-dark th:nth-child(2){width:250px;}
-
 .table-dark tr:hover{background:var(--hover);}
 
 .playlist-container{text-align:center;padding-top:40px;}
@@ -178,8 +264,6 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
 }
 .create-link:hover{color:var(--accent);}
 
-
-
 .song-search-input{
     width:300px;
     background:var(--input);
@@ -195,7 +279,6 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
     transform:scale(1.03);
 }
 
-
 .row-added{
     background:#09231b !important;
     border-left:4px solid var(--accent2);
@@ -203,7 +286,6 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
 .row-added:hover{
     background:#0f2c22 !important;
 }
-
 
 .tag-added{
     background:var(--accent2);
@@ -214,13 +296,11 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
     font-weight:700;
 }
 
-
 .btn-disabled{
     opacity:.35;
     cursor:not-allowed;
     pointer-events:none;
 }
-
 
 .add-section-title{
     margin-top:28px;
@@ -230,17 +310,14 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
     font-weight:700;
 }
 
-
 .action-col form{
     display:inline-block;
     margin:0 4px;
 }
 
-
 .table-dark tr.selectable:hover{
     background:#1e272e;
 }
-
 
 .soft-divider{
     width:92%;
@@ -250,20 +327,14 @@ input.playlist-input:focus{outline:2px solid var(--accent);}
     opacity:.45;
 }
 
-/* Ensure ONLY the playing song shows highlight */
 .song-row {
-    border-left:4px solid transparent; /* default = no highlight */
+    border-left:4px solid transparent;
     transition:0.25s;
 }
-
 .song-row.playing {
-    background:#002b33 !important;  /* better visible than current */
+    background:#002b33 !important;
     border-left-color:var(--accent2) !important;
 }
-
-/* Hover should NOT override playing style */
 .song-row:hover:not(.playing) {
     background:var(--hover) !important;
 }
-
-

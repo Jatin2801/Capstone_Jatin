@@ -7,35 +7,84 @@
 
 <body>
 
-<div class="login-wrapper fade">
+
+
+<div class="login-wrapper fade" style="margin-top:-20px">
 
     <h1>Login</h1>
 
-    <!-- ADMIN LOGIN -->
-    <h2 class="login-title">Admin Login</h2>
+    <!-- Tabs – Default = USER selected -->
+    <div class="switch-box" style="margin-top:25px;">
+        <button id="userTab"  class="switch-btn active">User</button>
+        <button id="adminTab" class="switch-btn">Admin</button>
+    </div>
 
-    <form action="${pageContext.request.contextPath}/admin/login" method="post" class="login-form">
-        <input type="text"     name="username" placeholder="Admin Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+    <!-- SLIDER -->
+    <div class="form-slider login-slider">
 
-        <button class="login-btn">Login as Admin</button>
-    </form>
+        <!-- USER LOGIN (shown by default) -->
+        <form id="userLogin" class="register-slide" action="${pageContext.request.contextPath}/user/login" method="post">
 
-    <hr class="divider">
+            <div class="field"><label>Username</label>
+            <input type="text" name="username" placeholder="Enter Username" required></div>
 
-    <!-- USER LOGIN -->
-    <h2 class="login-title">User Login</h2>
+            <div class="field"><label>Password</label>
+            <input type="password" name="password" placeholder="Enter Password" required></div>
 
-    <form action="${pageContext.request.contextPath}/user/login" method="post" class="login-form">
-        <input type="text"     name="username" placeholder="User Username" required>
-        <input type="password" name="password" placeholder="Password" required>
+            <button class="login-btn">Login as User</button>
+        </form>
 
-        <button class="login-btn">Login as User</button>
-    </form>
+        <!-- ADMIN LOGIN (hidden initially, slides in) -->
+        <form id="adminLogin" class="register-slide" action="${pageContext.request.contextPath}/admin/login" method="post" 
+              style="margin-left:1200px;">
 
-    <a href="/register">Create an Account</a>
+            <div class="field"><label>Admin Username</label>
+            <input type="text" name="username" placeholder="Enter Admin Username" required></div>
 
+            <div class="field"><label>Password</label>
+            <input type="password" name="password" placeholder="Enter Admin Password" required></div>
+
+            <button class="login-btn">Login as Admin</button>
+        </form>
+
+    </div>
+
+    <a href="/register" class="create-link" style="margin-top:25px;display:block;">Create an Account</a>
 </div>
+
+
+<!-- ⭐ LOGIN TAB SWITCH SCRIPT -->
+<script>
+let uForm = document.getElementById("userLogin");
+let aForm = document.getElementById("adminLogin");
+let uTab  = document.getElementById("userTab");
+let aTab  = document.getElementById("adminTab");
+
+function resize(){
+    document.querySelector(".login-slider").style.height =
+        (uTab.classList.contains("active") ? uForm.offsetHeight : aForm.offsetHeight) + "px";
+}
+
+function showUser(){
+    uForm.style.marginLeft = "0px";
+    aForm.style.marginLeft = "1200px";
+    uTab.classList.add("active");
+    aTab.classList.remove("active");
+    resize();
+}
+
+function showAdmin(){
+    uForm.style.marginLeft = "-1200px";
+    aForm.style.marginLeft = "0px";
+    aTab.classList.add("active");
+    uTab.classList.remove("active");
+    resize();
+}
+
+uTab.onclick = showUser;
+aTab.onclick = showAdmin;
+window.onload = resize;
+</script>
 
 </body>
 </html>
