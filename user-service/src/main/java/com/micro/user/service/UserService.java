@@ -3,7 +3,10 @@ package com.micro.user.service;
 import com.micro.user.entity.User;
 import com.micro.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,16 +19,21 @@ public class UserService {
 
     private final UserRepository repo;
     private final RestTemplate restTemplate;
+    private final PasswordEncoder passwordEncoder;
     private final String mailServiceUrl;
 
-    public UserService(UserRepository repo, RestTemplate restTemplate,
+    public UserService(UserRepository repo,
+                       RestTemplate restTemplate,
+                       PasswordEncoder passwordEncoder,
                        @Value("${MAIL_SERVICE_URL:http://localhost:8084}") String mailServiceUrl) {
         this.repo = repo;
         this.restTemplate = restTemplate;
+        this.passwordEncoder = passwordEncoder;
         this.mailServiceUrl = mailServiceUrl;
     }
 
     public User addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = repo.save(user);
         sendUserCreatedMail(saved);
         return saved;
@@ -48,7 +56,9 @@ public class UserService {
             old.setFirstName(newData.getFirstName());
             old.setLastName(newData.getLastName());
             old.setUsername(newData.getUsername());
-            old.setPassword(newData.getPassword());
+            if (newData.getPassword() != null && !newData.getPassword().isBlank()) {
+                old.setPassword(passwordEncoder.encode(newData.getPassword()));
+            }
             old.setEmail(newData.getEmail());
             old.setMobile(newData.getMobile());
             old.setCity(newData.getCity());
@@ -60,7 +70,10 @@ public class UserService {
 
     public User login(String username, String password) {
         User u = repo.findByUsername(username);
-        return (u != null && u.getPassword().equals(password)) ? u : null;
+        if (u == null) {
+            return null;
+        }
+        return passwordEncoder.matches(password, u.getPassword()) ? u : null;
     }
 
     private void sendUserCreatedMail(User u) {
@@ -72,7 +85,7 @@ public class UserService {
             body.put("email", u.getEmail());
             body.put("username", u.getUsername());
 
-            HttpEntity<Map<String,String>> entity = new HttpEntity<>(body, headers);
+            HttpEntity<Map<String, String>> entity = new HttpEntity<>(body, headers);
 
             restTemplate.postForEntity(
                     mailServiceUrl + "/mail/user/account-created",
@@ -81,7 +94,6 @@ public class UserService {
             );
 
             System.out.println("MAIL SENT → USER CREATED → " + u.getEmail());
-
         } catch (Exception e) {
             System.out.println("MAIL FAILED");
             e.printStackTrace();

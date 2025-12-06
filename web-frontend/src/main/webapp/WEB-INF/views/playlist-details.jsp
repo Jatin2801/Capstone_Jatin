@@ -51,9 +51,6 @@
         <button type="button" class="btn-outline">Clear</button>
     </a>
 </form>
-
-
-
     
     <table class="table-dark" style="margin-top:20px;">
         <thead>

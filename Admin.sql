@@ -10,5 +10,5 @@ CREATE TABLE admin (
     mobile_no VARCHAR(20)
 );
 select * from admin;
+
 truncate table admin;
-select * from songs_library ;
