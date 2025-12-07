@@ -5,10 +5,12 @@ import com.micro.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +35,9 @@ public class UserService {
     }
 
     public User addUser(User user) {
+        if (repo.findByUsername(user.getUsername()) != null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "USERNAME_EXISTS");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         User saved = repo.save(user);
         sendUserCreatedMail(saved);

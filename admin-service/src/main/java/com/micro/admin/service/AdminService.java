@@ -3,9 +3,11 @@ package com.micro.admin.service;
 import com.micro.admin.entity.Admin;
 import com.micro.admin.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +40,9 @@ public class AdminService {
     }
 
     public Admin addAdmin(Admin admin) {
+        if (repo.findByUsername(admin.getUsername()) != null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "USERNAME_EXISTS");
+        }
         admin.setPassword(passwordEncoder.encode(admin.getPassword()));
         Admin saved = repo.save(admin);
         sendAdminCreatedMail(saved);
@@ -71,17 +76,14 @@ public class AdminService {
             if (admin.getEmail() == null || admin.getEmail().isEmpty()) {
                 return;
             }
-
             Map<String, String> body = new HashMap<>();
             body.put("email", admin.getEmail());
             body.put("adminName", admin.getAdminName());
-
             restTemplate.postForEntity(
                     mailServiceUrl + "/mail/admin/account-created",
                     body,
                     String.class
             );
-
             System.out.println("ADMIN MAIL SENT → " + admin.getEmail());
         } catch (Exception e) {
             System.err.println("ADMIN MAIL ERROR: " + e.getMessage());

@@ -11,17 +11,16 @@
 <div class="auth-container fade" style="margin-top: -30px">
 
     <h2>Create Account</h2>
-
+    <p style="color:green;">${msg}</p>
+    <p style="color:red;">${error}</p>
 
     <div class="switch-box">
         <button id="adminTab" class="switch-btn active">Admin</button>
         <button id="userTab" class="switch-btn">User</button>
     </div>
 
-    
     <div class="form-slider">
 
-    
         <form id="adminForm" class="register-slide" action="${pageContext.request.contextPath}/admin/add" method="post">
 
             <div class="field"><label>Full Name</label>
@@ -42,8 +41,6 @@
             <button>Create Admin</button>
         </form>
 
-
-        
         <form id="userForm" class="register-slide" action="${pageContext.request.contextPath}/user/add" method="post">
 
             <div class="field"><label>First Name</label>
@@ -80,13 +77,12 @@
 
 </div>
 
-
 <script>
 let admin = document.getElementById("adminForm");
 let user  = document.getElementById("userForm");
 function adjustHeight(){
     let slider = document.querySelector(".form-slider");
-    let activeForm = adminTab.classList.contains("active") ? admin : user;
+    let activeForm = document.querySelector(".switch-btn.active").id === "adminTab" ? admin : user;
     slider.style.height = activeForm.offsetHeight + "px";
 }
 

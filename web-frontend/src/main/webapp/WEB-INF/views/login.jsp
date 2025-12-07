@@ -10,6 +10,8 @@
 <div class="login-wrapper fade" style="margin-top:-20px">
 
     <h1>Login</h1>
+    <p style="color:red;text-align:center;">${error}</p>
+    <p style="color:green;text-align:center;">${msg}</p>
     <div class="switch-box" style="margin-top:25px;">
         <button id="userTab"  class="switch-btn active">User</button>
         <button id="adminTab" class="switch-btn">Admin</button>
