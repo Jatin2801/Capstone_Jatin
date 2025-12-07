@@ -45,9 +45,7 @@ public class PlaylistUIController {
     @GetMapping("/view/{id}")
     public String view(@PathVariable Integer id,
                        @RequestParam Integer userId,
-                       @RequestParam(required = false) String songName,
-                       @RequestParam(required = false) String musicDirector,
-                       @RequestParam(required = false) String album,
+                       @RequestParam(required = false) String keyword,
                        Model model) {
 
         Map playlist = rest.getForObject(userService + "/playlists/" + id, Map.class);
@@ -56,40 +54,27 @@ public class PlaylistUIController {
 
         List songsInPlaylist = buildSongsInPlaylist(playlist);
 
-        // ---------- FILTERING LOGIC ----------
-        songsInPlaylist = (List) songsInPlaylist.stream()
-                .filter(s -> {
-                    if (!(s instanceof Map)) return true;
-                    Map map = (Map)s;
+        
+        if(keyword != null && !keyword.isBlank()) {
+            String key = keyword.toLowerCase();
+            songsInPlaylist = (List) songsInPlaylist.stream()
+                    .filter(s -> {
+                        if (!(s instanceof Map)) return true;
+                        Map map = (Map)s;
 
-                    boolean match = true;
+                        return ( map.get("songTitle")     != null && map.get("songTitle").toString().toLowerCase().contains(key) ) ||
+                               ( map.get("musicDirector") != null && map.get("musicDirector").toString().toLowerCase().contains(key) ) ||
+                               ( map.get("albumName")     != null && map.get("albumName").toString().toLowerCase().contains(key) ) ||
+                               ( map.get("singer")        != null && map.get("singer").toString().toLowerCase().contains(key) );
+                    }).toList();
 
-                    if(songName != null && !songName.isBlank())
-                        match &= map.get("songTitle") != null &&
-                                 map.get("songTitle").toString().toLowerCase()
-                                 .contains(songName.toLowerCase());
-
-                    if(musicDirector != null && !musicDirector.isBlank())
-                        match &= map.get("musicDirector") != null &&
-                                 map.get("musicDirector").toString().toLowerCase()
-                                 .contains(musicDirector.toLowerCase());
-
-                    if(album != null && !album.isBlank())
-                        match &= map.get("albumName") != null &&
-                                 map.get("albumName").toString().toLowerCase()
-                                 .contains(album.toLowerCase());
-
-                    return match;
-                }).toList();
+            model.addAttribute("keyword", keyword);
+        }
 
         model.addAttribute("songsInPlaylist", songsInPlaylist);
-
-        model.addAttribute("songName", songName);
-        model.addAttribute("musicDirector", musicDirector);
-        model.addAttribute("album", album);
-
         return "playlist-details";
     }
+
 
 
     @GetMapping("/add/{playlistId}")
@@ -173,7 +158,7 @@ public class PlaylistUIController {
         return "redirect:/playlists/view/" + playlistId + "?userId=" + userId;
     }
 
-    // helper to fetch songs in a playlist from song-service
+    
     private List buildSongsInPlaylist(Map playlist) {
         List<Integer> ids = (List<Integer>) playlist.get("songIds");
         List songsInPlaylist = new ArrayList();

@@ -18,7 +18,6 @@
     <h1 class="play-title">Add Songs to: ${playlist.name}</h1>
     <p class="play-sub">Search by song name, music director or singer.</p>
 
-    <!-- Search bar -->
     <form method="get"
           action="/playlists/add/${playlist.playlistId}"
           class="top-action-row"

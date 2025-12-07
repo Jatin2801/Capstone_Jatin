@@ -27,23 +27,14 @@
         </div>
     </c:if>
 
-<form method="get"
-      action="/playlists/view/${playlist.playlistId}"
-      style="display:flex; justify-content:center; align-items:center; gap:14px; flex-wrap:wrap; margin:30px 0;">
+<form method="get" action="/playlists/view/${playlist.playlistId}"
+      style="display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin:30px 0;">
 
     <input type="hidden" name="userId" value="${userId}" />
 
-    <input type="text" name="songName" value="${songName}"
-           placeholder="Search by Song"
-           class="playlist-input" style="width:240px;" />
-
-    <input type="text" name="musicDirector" value="${musicDirector}"
-           placeholder="Search by Director"
-           class="playlist-input" style="width:240px;" />
-
-    <input type="text" name="album" value="${album}"
-           placeholder="Search by Album"
-           class="playlist-input" style="width:220px;" />
+    <input type="text" name="keyword" value="${keyword}"
+           placeholder="Search Song / Director / Singer / Album"
+           class="playlist-input" style="width:300px;" />
 
     <button type="submit">Search</button>
 
@@ -51,6 +42,7 @@
         <button type="button" class="btn-outline">Clear</button>
     </a>
 </form>
+
     
     <table class="table-dark" style="margin-top:20px;">
         <thead>
