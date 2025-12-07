@@ -56,9 +56,6 @@ public class UserService {
             old.setFirstName(newData.getFirstName());
             old.setLastName(newData.getLastName());
             old.setUsername(newData.getUsername());
-            if (newData.getPassword() != null && !newData.getPassword().isBlank()) {
-                old.setPassword(passwordEncoder.encode(newData.getPassword()));
-            }
             old.setEmail(newData.getEmail());
             old.setMobile(newData.getMobile());
             old.setCity(newData.getCity());

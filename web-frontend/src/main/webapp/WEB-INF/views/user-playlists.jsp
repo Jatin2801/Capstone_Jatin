@@ -10,7 +10,7 @@
 
 <div class="content-block fade">
 
-    <h2 style="font-size:28px;margin-bottom:25px;text-align:center;">🎶 My Playlists</h2>
+    <h2 style="font-size:28px;margin-bottom:25px;text-align:center;margin-left:-40px">🎶 My Playlists</h2>
 
     <!-- CREATE NEW PLAYLIST -->
     <form action="/playlists/create" method="post" style="text-align:center;margin-bottom:25px;">

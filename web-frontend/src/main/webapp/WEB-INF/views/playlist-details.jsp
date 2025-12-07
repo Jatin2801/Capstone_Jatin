@@ -83,7 +83,6 @@
         <audio id="player" controls style="width:100%;"></audio>
     </div>
 
-    <!-- Button to go to Add Songs page -->
     <div style="margin-top:30px;">
         <a href="/playlists/add/${playlist.playlistId}?userId=${userId}">
             <button>+ Add Songs</button>

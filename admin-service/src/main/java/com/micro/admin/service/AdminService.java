@@ -56,9 +56,6 @@ public class AdminService {
         return repo.findById(id).map(existing -> {
             existing.setAdminName(newData.getAdminName());
             existing.setUsername(newData.getUsername());
-            if (newData.getPassword() != null && !newData.getPassword().isBlank()) {
-                existing.setPassword(passwordEncoder.encode(newData.getPassword()));
-            }
             existing.setEmail(newData.getEmail());
             existing.setMobileNo(newData.getMobileNo());
             return repo.save(existing);

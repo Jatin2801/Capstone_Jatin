@@ -24,11 +24,6 @@
         </div>
 
         <div class="field">
-            <label>Password</label>
-            <input name="password" value="${admin.password}" placeholder="Enter Password"/>
-        </div>
-
-        <div class="field">
             <label>Email</label>
             <input name="email" value="${admin.email}" placeholder="Enter Email Address"/>
         </div>

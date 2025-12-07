@@ -50,7 +50,6 @@ public class AdminController {
         return ResponseEntity.ok(updated);
     }
 
-    // JSON Login
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Admin req) {
         Admin a = service.login(req.getUsername(), req.getPassword());
@@ -59,13 +58,4 @@ public class AdminController {
         return ResponseEntity.ok().header("Authorization","Bearer "+token).body(a);
     }
 
-    // 🟢 JSP FORM LOGIN ENDPOINT
-    @PostMapping(value="/form-login", consumes="application/x-www-form-urlencoded")
-    public ResponseEntity<?> loginForm(@RequestParam String username, @RequestParam String password){
-        Admin a = service.login(username,password);
-        if(a==null) return ResponseEntity.status(401).body("Invalid Admin Login");
-        String token = jwtUtil.generateToken(a.getUsername(),Map.of("adminId", a.getAdminId()));
-        request.getSession().setAttribute("AuthToken",token);
-        return ResponseEntity.status(302).header("Location","/admin/home").build();
-    }
 }

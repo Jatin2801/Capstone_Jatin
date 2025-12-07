@@ -34,11 +34,6 @@
         </div>
 
         <div class="field">
-            <label>Password</label>
-            <input name="password" value="${user.password}" placeholder="Enter New Password"/>
-        </div>
-
-        <div class="field">
             <label>Mobile</label>
             <input name="mobile" value="${user.mobile}" placeholder="Enter Mobile Number"/>
         </div>
